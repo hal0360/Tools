@@ -4,8 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.SharedPreferences;
 
-
-public class App extends Application {
+public class RegisterApplication extends Application {
 
     private static SharedPreferences p;
     private static SharedPreferences.Editor editor;
