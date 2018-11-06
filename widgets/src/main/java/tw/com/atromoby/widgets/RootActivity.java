@@ -1,31 +1,19 @@
 package tw.com.atromoby.widgets;
 
-import android.content.BroadcastReceiver;
+import android.app.Service;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public abstract class RootActivity extends AppCompatActivity implements View.OnClickListener{
 
     private SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
-    private List<BroadcastReceiver> broadcastReceivers = new ArrayList<>();
-
-    protected void registerReceiver(String filterStr, BroadcastReceiver broadcastReceiver){
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                broadcastReceiver, new IntentFilter(filterStr));
-        broadcastReceivers.add(broadcastReceiver);
-    }
 
     @Override
     protected void onCreate(Bundle saveInstanceState){
@@ -52,12 +40,12 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         cmds.put(v.getId(),cd);
     }
 
-    public final void pushActivity(Class actClass){
+    public final void pushActivity(Class<? extends AppCompatActivity> actClass){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
     }
 
-    public final void pushActivity(Class actClass, int anime){
+    public final void pushActivity(Class<? extends AppCompatActivity> actClass, int anime){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
         switch (anime) {
@@ -70,11 +58,19 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         }
     }
 
+    public final void quickStartService(Class<? extends Service> serviceClass){
+        startService(new Intent(this, serviceClass));
+    }
+
+    public final void quickStopService(Class<? extends Service> serviceClass){
+        stopService(new Intent(this, serviceClass));
+    }
+
     protected void alert(String mess){
         Toast.makeText(this, mess, Toast.LENGTH_LONG).show();
     }
 
-    public final void toActivity(Class actClass){
+    public final void toActivity(Class<? extends AppCompatActivity> actClass){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
         handler.postDelayed(new Runnable() {
@@ -85,7 +81,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         }, 500);
     }
 
-    public final void toActivity(Class actClass, int anime){
+    public final void toActivity(Class<? extends AppCompatActivity> actClass, int anime){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
         switch (anime) {
@@ -113,9 +109,5 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
-        for(BroadcastReceiver broadcastReceiver: broadcastReceivers){
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(
-                    broadcastReceiver);
-        }
     }
 }
