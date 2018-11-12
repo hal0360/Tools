@@ -19,6 +19,8 @@ public abstract class ItemHolder extends RecyclerView.ViewHolder implements View
         super(LayoutInflater.from(cv.tempVG.getContext()).inflate(Rid, cv.tempVG, false));
         context = cv.context;
         collectionView = cv;
+
+
     }
 
     protected void alert(String mess){
