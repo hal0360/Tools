@@ -1,58 +1,53 @@
 package tw.com.atromoby.widgets;
 
-import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.Toast;
 
 
-public abstract class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public abstract class ItemHolder implements View.OnClickListener{
 
-    private SparseArray<Cmd> cmds = new SparseArray<>();
-    protected Context context;
-    private CollectionView collectionView;
+    private SparseArray<CmdView> cmds = new SparseArray<>();
+    private int rid;
+    private MobyHolder myHolder;
 
-    public ItemHolder(CollectionView cv, int Rid) {
-        super(LayoutInflater.from(cv.tempVG.getContext()).inflate(Rid, cv.tempVG, false));
-        context = cv.context;
-        collectionView = cv;
-
-
+    public ItemHolder(int resID){
+        rid = resID;
     }
 
-    protected void alert(String mess){
-        Toast.makeText(context, mess, Toast.LENGTH_LONG).show();
+    int getResID(){
+        return rid;
     }
 
-
-    protected final <T extends View & Checkable> T findView(int Rid){
-        return itemView.findViewById(Rid);
+    final void created(MobyHolder disHolder){
+        myHolder = disHolder;
     }
 
-    protected final void delete(){
-        collectionView.delete(getAdapterPosition());
-    }
+    public abstract void init();
 
+    public abstract void cleanUp();
 
-    protected final void clicked(View v, Cmd cd){
+    protected final void clicked(View v, CmdView cd){
         v.setOnClickListener(this);
         cmds.put(v.getId(),cd);
     }
 
-    protected final void clicked(int id, Cmd cd){
+    protected final <T extends View & Checkable> T findView(int Rid){
+        return myHolder.itemView.findViewById(Rid);
+    }
+
+    protected final void clicked(int id, CmdView cd){
         findView(id).setOnClickListener(this);
         cmds.put(id,cd);
     }
 
-    public abstract void init(Item item);
-
-    public abstract void cleanUp();
+    protected void alert(String mess){
+        Toast.makeText(myHolder.itemView.getContext(), mess, Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public final void onClick(View v) {
-        cmds.get(v.getId()).exec();
+        cmds.get(v.getId()).exec(v);
     }
 }

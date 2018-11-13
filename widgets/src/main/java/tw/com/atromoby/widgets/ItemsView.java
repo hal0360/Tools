@@ -6,68 +6,60 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
 
-public class ExpRecycleView extends RecyclerView {
+public class ItemsView extends RecyclerView {
 
-    public Context context;
-    private ExpRecycleView.MyAdaptor myAdaptor;
-    public ViewGroup tempVG;
-    public static final SparseArray<Provider> holders = new SparseArray<>();
+    private Context context;
+    private ItemsView.MobyAdaptor mobyAdaptor;
 
-    public ExpRecycleView(Context context)
+    public ItemsView(Context context)
     {
         super(context);
         this.context = context;
     }
 
-    public ExpRecycleView(Context context, AttributeSet attrs)
+    public ItemsView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
         this.context = context;
     }
 
-    public ExpRecycleView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public ItemsView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
     }
 
-    /*
-    public void init(List<Item> items){
-        myAdaptor = new ExpRecycleView.MyAdaptor(items);
+
+    public void init(List<ItemHolder> items){
+        mobyAdaptor = new ItemsView.MobyAdaptor(items);
         setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         setLayoutManager(llm);
-        setAdapter(myAdaptor);
+        setAdapter(mobyAdaptor);
     }
 
-    public void add(int pos, Item item){
-        myAdaptor.items.add(pos, item);
-        myAdaptor.notifyItemInserted(pos);
+    public void add(int pos, ItemHolder item){
+        mobyAdaptor.items.add(pos, item);
+        mobyAdaptor.notifyItemInserted(pos);
     }
 
     public void delete(int index){
-        myAdaptor.items.remove(index);
-        myAdaptor.notifyItemRemoved(index);
-    }*/
+        mobyAdaptor.items.remove(index);
+        mobyAdaptor.notifyItemRemoved(index);
 
-
-
-    private ExpRecycleView getThis(){
-        return this;
     }
 
-    private class MyAdaptor extends RecyclerView.Adapter<MobyHolder>{
+    private class MobyAdaptor extends RecyclerView.Adapter<MobyHolder>{
 
-        public List<CollectHolder> items;
+        public List<ItemHolder> items;
 
-        public MyAdaptor(List<CollectHolder> items) {
+        MobyAdaptor(List<ItemHolder> items) {
             this.items = items;
         }
 
@@ -90,18 +82,12 @@ public class ExpRecycleView extends RecyclerView {
         @Override
         public MobyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(i, viewGroup, false);
-            MobyHolder holder = new MobyHolder(view);
-            return holder;
-        }
-
-        @Override
-        public void onViewDetachedFromWindow(@NonNull MobyHolder holder) {
-
+            return new MobyHolder(view);
         }
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-         
+            holder.cleaned();
         }
     }
 

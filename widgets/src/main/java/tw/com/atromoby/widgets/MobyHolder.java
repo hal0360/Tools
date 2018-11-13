@@ -4,14 +4,22 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-public class MobyHolder  extends RecyclerView.ViewHolder {
+class MobyHolder  extends RecyclerView.ViewHolder {
 
-    public MobyHolder(@NonNull View itemView) {
+    private ItemHolder cHold;
+
+    MobyHolder(@NonNull View itemView) {
         super(itemView);
     }
 
-    public void init(CollectHolder holder){
+    void init(ItemHolder holder){
+        holder.created(this);
+        cHold = holder;
+        holder.init();
+    }
 
+    void cleaned(){
+        cHold.cleanUp();
     }
 
 }
