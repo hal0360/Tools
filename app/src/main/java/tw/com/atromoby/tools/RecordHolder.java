@@ -16,20 +16,20 @@ public class RecordHolder extends ItemHolder {
     }
 
     @Override
-    public void init() {
+    public void onBind() {
         TextView textView = findView(R.id.nameTxt);
         textView.setText(name);
 
         clicked(R.id.avatar, new CmdView() {
             @Override
             public void exec(View v) {
-                alert("ape skull");
+                alert("ape skull " + name);
             }
         });
     }
 
     @Override
-    public void cleanUp() {
+    public void onClean() {
 
     }
 }

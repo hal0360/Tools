@@ -7,7 +7,6 @@ import java.util.List;
 
 import tw.com.atromoby.utils.LocalIntent;
 import tw.com.atromoby.utils.LocalReceiver;
-import tw.com.atromoby.widgets.ItemHolder;
 import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
 
@@ -27,8 +26,7 @@ public class MainActivity extends RootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ItemsView itemsView = findViewById(R.id.recycleView);
-        List<ItemHolder> items = new ArrayList<>();
+        ItemsView items = findViewById(R.id.recycleView);
         items.add(new RecordHolder("Ron"));
         items.add(new CarHolder("jack"));
         items.add(new RecordHolder("lu"));
@@ -49,7 +47,12 @@ public class MainActivity extends RootActivity {
         items.add(new CarHolder("blue"));
         items.add(new RecordHolder("lu"));
         items.add(new RecordHolder("han"));
-        itemsView.init(items);
+        items.add(new RecordHolder("han"));
+        items.add(new RecordHolder("Ron"));
+        items.add(new CarHolder("blue"));
+        items.add(new RecordHolder("lu"));
+        items.add(new RecordHolder("han"));
+
 
     }
 

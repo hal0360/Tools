@@ -10,33 +10,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ItemsView extends RecyclerView {
 
-    private Context context;
     private ItemsView.MobyAdaptor mobyAdaptor;
 
     public ItemsView(Context context)
     {
         super(context);
-        this.context = context;
+        init(context);
     }
 
     public ItemsView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
-        this.context = context;
+        init(context);
     }
 
     public ItemsView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        this.context = context;
+        init(context);
     }
 
-
-    public void init(List<ItemHolder> items){
-        mobyAdaptor = new ItemsView.MobyAdaptor(items);
+    private void init(Context context){
+        mobyAdaptor = new ItemsView.MobyAdaptor(new ArrayList<ItemHolder>());
         setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -49,10 +48,36 @@ public class ItemsView extends RecyclerView {
         mobyAdaptor.notifyItemInserted(pos);
     }
 
+    public void add(int pos, List<ItemHolder> items){
+        mobyAdaptor.items.addAll(pos, items);
+        mobyAdaptor.notifyItemInserted(pos);
+    }
+
+    public void add(ItemHolder item){
+        mobyAdaptor.items.add(item);
+        mobyAdaptor.notifyItemInserted(mobyAdaptor.items.size() - 1);
+    }
+
+    public void add(List<ItemHolder> items){
+        mobyAdaptor.items.addAll(items);
+        mobyAdaptor.notifyItemInserted(mobyAdaptor.items.size() - 1);
+    }
+
     public void delete(int index){
         mobyAdaptor.items.remove(index);
         mobyAdaptor.notifyItemRemoved(index);
+    }
 
+    public void delete(){
+        mobyAdaptor.items.clear();
+        mobyAdaptor.notifyDataSetChanged();
+    }
+
+    public void replace(List<ItemHolder> items){
+        mobyAdaptor.items.clear();
+        mobyAdaptor.items.addAll(items);
+        mobyAdaptor.notifyDataSetChanged();
+        scrollToPosition(0);
     }
 
     private class MobyAdaptor extends RecyclerView.Adapter<MobyHolder>{
@@ -70,12 +95,15 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onBindViewHolder(@NonNull MobyHolder holder, int i) {
-            holder.init(items.get(i));
+            ItemHolder itemHolder = items.get(i);
+            itemHolder.myHolder = holder;
+            holder.cHold = itemHolder;
+            itemHolder.onBind();
         }
 
         @Override
         public int getItemViewType(int position) {
-            return items.get(position).getResID();
+            return items.get(position).rid;
         }
 
         @NonNull
@@ -87,7 +115,9 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-            holder.cleaned();
+            holder.cHold.myHolder = null;
+            holder.cHold.onClean();
+            holder.cHold = null;
         }
     }
 

@@ -12,13 +12,13 @@ public class CarHolder extends ItemHolder {
     }
 
     @Override
-    public void init() {
+    public void onBind() {
         TextView textView = findView(R.id.nameTxt);
         textView.setText(name);
     }
 
     @Override
-    public void cleanUp() {
+    public void onClean() {
 
     }
 }

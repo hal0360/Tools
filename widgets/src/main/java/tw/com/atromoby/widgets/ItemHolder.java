@@ -1,36 +1,24 @@
 package tw.com.atromoby.widgets;
 
-import android.util.SparseArray;
 import android.view.View;
 import android.widget.Checkable;
-import android.widget.Toast;
 
+public abstract class ItemHolder{
 
-public abstract class ItemHolder implements View.OnClickListener{
-
-    private SparseArray<CmdView> cmds = new SparseArray<>();
-    private int rid;
-    private MobyHolder myHolder;
+    int rid;
+    MobyHolder myHolder;
 
     public ItemHolder(int resID){
         rid = resID;
     }
 
-    int getResID(){
-        return rid;
-    }
+    public abstract void onBind();
 
-    final void created(MobyHolder disHolder){
-        myHolder = disHolder;
-    }
-
-    public abstract void init();
-
-    public abstract void cleanUp();
+    public abstract void onClean();
 
     protected final void clicked(View v, CmdView cd){
-        v.setOnClickListener(this);
-        cmds.put(v.getId(),cd);
+        v.setOnClickListener(myHolder);
+        myHolder.cmds.put(v.getId(),cd);
     }
 
     protected final <T extends View & Checkable> T findView(int Rid){
@@ -38,16 +26,12 @@ public abstract class ItemHolder implements View.OnClickListener{
     }
 
     protected final void clicked(int id, CmdView cd){
-        findView(id).setOnClickListener(this);
-        cmds.put(id,cd);
+        findView(id).setOnClickListener(myHolder);
+        myHolder.cmds.put(id,cd);
     }
 
-    protected void alert(String mess){
-        Toast.makeText(myHolder.itemView.getContext(), mess, Toast.LENGTH_LONG).show();
+    protected final void alert(String message){
+        myHolder.alert(message);
     }
 
-    @Override
-    public final void onClick(View v) {
-        cmds.get(v.getId()).exec(v);
-    }
 }
