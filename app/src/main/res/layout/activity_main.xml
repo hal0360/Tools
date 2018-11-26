@@ -9,8 +9,8 @@
 
   <tw.com.atromoby.widgets.ItemsView
       android:id="@+id/recycleView"
+      app:direction="horizontal"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
-
 
 </android.support.constraint.ConstraintLayout>

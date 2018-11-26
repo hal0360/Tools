@@ -11,7 +11,7 @@ public class ListOfJson<T> implements ParameterizedType
 {
     private Class<?> wrapped;
 
-    public ListOfJson(Class<T> wrapper)
+    ListOfJson(Class<T> wrapper)
     {
         this.wrapped = wrapper;
     }

@@ -26,6 +26,7 @@ public class MainActivity extends RootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         ItemsView items = findViewById(R.id.recycleView);
         items.add(new RecordHolder("Ron"));
         items.add(new CarHolder("jack"));
