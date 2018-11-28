@@ -1,5 +1,6 @@
 package tw.com.atromoby.widgets;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.Checkable;
 
@@ -19,6 +20,10 @@ public abstract class ItemHolder{
     protected final void clicked(View v, CmdView cd){
         v.setOnClickListener(myHolder);
         myHolder.cmds.put(v.getId(),cd);
+    }
+
+    protected final Context getContex(){
+        return myHolder.itemView.getContext();
     }
 
     protected final <T extends View & Checkable> T findView(int Rid){
