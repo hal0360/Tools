@@ -2,15 +2,14 @@ package tw.com.atromoby.tools;
 
 import android.os.Bundle;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import tw.com.atromoby.rtmplayer.IjkVideoView;
 import tw.com.atromoby.utils.LocalIntent;
 import tw.com.atromoby.utils.LocalReceiver;
-import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
 
 public class MainActivity extends RootActivity {
+
+    private IjkVideoView mVideoView;
 
     private LocalReceiver localReceiver = new LocalReceiver() {
         @Override
@@ -27,32 +26,26 @@ public class MainActivity extends RootActivity {
         setContentView(R.layout.activity_main);
 
 
-        ItemsView items = findViewById(R.id.recycleView);
-        items.add(new RecordHolder("Ron"));
-        items.add(new CarHolder("jack"));
-        items.add(new RecordHolder("lu"));
-        items.add(new RecordHolder("han"));
-        items.add(new RecordHolder("Ron"));
-        items.add(new CarHolder("jack"));
-        items.add(new RecordHolder("lu"));
-        items.add(new RecordHolder("han"));
-        items.add(new RecordHolder("Ron"));
-        items.add(new CarHolder("jack"));
-        items.add(new RecordHolder("lu"));
-        items.add(new RecordHolder("han"));
-        items.add(new RecordHolder("cake"));
-        items.add(new CarHolder("jack"));
-        items.add(new RecordHolder("lu"));
-        items.add(new RecordHolder("han"));
-        items.add(new RecordHolder("Ron"));
-        items.add(new CarHolder("blue"));
-        items.add(new RecordHolder("lu"));
-        items.add(new RecordHolder("han"));
-        items.add(new RecordHolder("han"));
-        items.add(new RecordHolder("Ron"));
-        items.add(new CarHolder("blue"));
-        items.add(new RecordHolder("lu"));
-        items.add(new RecordHolder("han"));
+        //定义的直播地址
+        String path = "rtmp://demo-stream.wm77.asia/live1/stream2";
+
+        //定义IjkVideoView
+        //定义的播放按钮的layout，用来加载定义好的播放界面
+        // mHudView = findViewById(R.id.hud_view);
+
+        //这里使用的是Demo中提供的AndroidMediaController类控制播放相关操作
+
+        // mMediaController = new AndroidMediaController(this, false);
+        //ActionBar actionBar = getSupportActionBar();
+        //mMediaController.setSupportActionBar(actionBar);
+
+        mVideoView = findViewById(R.id.player);
+        //mVideoView.setMediaController(null);
+        // mVideoView.setHudView(mHudView);
+
+        //设置videopath，开始播放
+        mVideoView.setVideoPath(path);
+        mVideoView.start();
 
 
     }
