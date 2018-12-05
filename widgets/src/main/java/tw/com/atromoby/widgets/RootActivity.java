@@ -2,6 +2,7 @@ package tw.com.atromoby.widgets;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -9,15 +10,44 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 
 public abstract class RootActivity extends AppCompatActivity implements View.OnClickListener{
 
     private SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
+    public static int language = 0;
+
+    public void switchLanguage(int lan){
+        language = lan;
+        recreate();
+    }
+
+    public void setLanguage(int lan){
+        language = lan;
+    }
 
     @Override
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
+        Locale locale;
+        switch(language) {
+            case Language.CHINESE_CH :
+                locale = Locale.CHINA;
+                break; // optional
+            case Language.ENGLISH :
+                locale = Locale.US;
+                break; // optional
+            case Language.CHINESE_TW :
+                locale = Locale.TAIWAN;
+                break; // optional
+            default : locale = Locale.US;
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         handler = new Handler();
     }
 
@@ -26,7 +56,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         cmds.put(id,cd);
     }
 
-    protected final void delay(int milsec, final Cmd cmd){
+    public final void delay(int milsec, final Cmd cmd){
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -66,7 +96,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         stopService(new Intent(this, serviceClass));
     }
 
-    protected void alert(String mess){
+    public void alert(String mess){
         Toast.makeText(this, mess, Toast.LENGTH_LONG).show();
     }
 
