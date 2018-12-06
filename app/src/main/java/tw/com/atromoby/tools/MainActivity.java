@@ -27,7 +27,7 @@ public class MainActivity extends RootActivity {
 
 
         //定义的直播地址
-        String path = "rtmp://demo-stream.wm77.asia/live1/stream2";
+        String path = "rtmp://demo-stream.wm77.asia/live1/stream1";
 
         //定义IjkVideoView
         //定义的播放按钮的layout，用来加载定义好的播放界面
@@ -46,7 +46,8 @@ public class MainActivity extends RootActivity {
         //设置videopath，开始播放
         mVideoView.setVideoPath(path);
         mVideoView.start();
-
+       // mVideoView.stopPlayback();
+       // mVideoView.pause();
 
     }
 
