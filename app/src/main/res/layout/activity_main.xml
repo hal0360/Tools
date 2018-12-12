@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="200dp"
         android:layout_height="150dp"
