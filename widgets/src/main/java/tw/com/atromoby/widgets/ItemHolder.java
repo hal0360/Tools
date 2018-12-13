@@ -30,7 +30,7 @@ public abstract class ItemHolder implements View.OnClickListener{
 
     public final String getTextView(int id){
         TextView txt = findView(id);
-        return txt.getText().toString();
+        return txt.getText().toString().trim();
     }
 
     public final void clicked(View v, CmdView cd){

@@ -159,9 +159,9 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-           // holder.cHold.myHolder = null;
+            holder.cHold.myHolder = null;
             holder.cHold.onRecycle();
-          //  holder.cHold = null;
+            holder.cHold = null;
         }
     }
 
