@@ -17,6 +17,16 @@ public class RecordHolder extends ItemHolder {
 
     @Override
     public void onBind() {
+
+    }
+
+    @Override
+    public void onRecycle() {
+
+    }
+
+    @Override
+    public void onCreate() {
         TextView textView = findView(R.id.nameTxt);
         textView.setText(name);
 
@@ -28,8 +38,4 @@ public class RecordHolder extends ItemHolder {
         });
     }
 
-    @Override
-    public void onClean() {
-
-    }
 }

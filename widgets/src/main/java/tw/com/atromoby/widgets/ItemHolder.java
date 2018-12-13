@@ -1,14 +1,17 @@
 package tw.com.atromoby.widgets;
 
 import android.content.Context;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.TextView;
 
-public abstract class ItemHolder{
+public abstract class ItemHolder implements View.OnClickListener{
 
     int rid;
+    boolean alreadyRunned = false;
     MobyHolder myHolder;
+    SparseArray<CmdView> cmds = new SparseArray<>();
 
     public ItemHolder(int resID){
         rid = resID;
@@ -16,7 +19,9 @@ public abstract class ItemHolder{
 
     public abstract void onBind();
 
-    public abstract void onClean();
+    public abstract void onRecycle();
+
+    public abstract void onCreate();
 
     public final void setTextView(int id, String str){
         TextView txt = findView(id);
@@ -29,8 +34,8 @@ public abstract class ItemHolder{
     }
 
     public final void clicked(View v, CmdView cd){
-        v.setOnClickListener(myHolder);
-        myHolder.cmds.put(v.getId(),cd);
+        v.setOnClickListener(this);
+        cmds.put(v.getId(),cd);
     }
 
     public final Context getContex(){
@@ -42,8 +47,13 @@ public abstract class ItemHolder{
     }
 
     public final void clicked(int id, CmdView cd){
-        findView(id).setOnClickListener(myHolder);
-        myHolder.cmds.put(id,cd);
+        findView(id).setOnClickListener(this);
+        cmds.put(id,cd);
+    }
+
+    @Override
+    public void onClick(View v) {
+        cmds.get(v.getId()).exec(v);
     }
 
     public final void alert(String message){

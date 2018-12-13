@@ -112,6 +112,10 @@ public class ItemsView extends RecyclerView {
         scrollToPosition(0);
     }
 
+    public void refresh(){
+        mobyAdaptor.notifyDataSetChanged();
+    }
+
     private class MobyAdaptor extends RecyclerView.Adapter<MobyHolder>{
 
         public List<ItemHolder> items;
@@ -128,8 +132,16 @@ public class ItemsView extends RecyclerView {
         @Override
         public void onBindViewHolder(@NonNull MobyHolder holder, int i) {
             ItemHolder itemHolder = items.get(i);
-            itemHolder.myHolder = holder;
-            holder.cHold = itemHolder;
+
+            if(!itemHolder.alreadyRunned){
+
+                itemHolder.myHolder = holder;
+                holder.cHold = itemHolder;
+
+                itemHolder.onCreate();
+                itemHolder.alreadyRunned = true;
+            }
+
             itemHolder.onBind();
         }
 
@@ -147,9 +159,9 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-            holder.cHold.myHolder = null;
-            holder.cHold.onClean();
-            holder.cHold = null;
+           // holder.cHold.myHolder = null;
+            holder.cHold.onRecycle();
+          //  holder.cHold = null;
         }
     }
 

@@ -18,7 +18,13 @@ public class CarHolder extends ItemHolder {
     }
 
     @Override
-    public void onClean() {
+    public void onRecycle() {
 
     }
+
+    @Override
+    public void onCreate() {
+
+    }
+
 }

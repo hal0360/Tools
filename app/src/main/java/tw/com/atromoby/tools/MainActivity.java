@@ -5,6 +5,7 @@ import android.os.Bundle;
 import tw.com.atromoby.rtmplayer.IjkVideoView;
 import tw.com.atromoby.utils.LocalIntent;
 import tw.com.atromoby.utils.LocalReceiver;
+import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
 
 public class MainActivity extends RootActivity {
@@ -27,7 +28,7 @@ public class MainActivity extends RootActivity {
 
 
         //定义的直播地址
-        String path = "rtmp://demo-stream.wm77.asia/live1/stream1";
+     //   String path = "rtmp://demo-stream.wm77.asia/live1/stream1";
 
         //定义IjkVideoView
         //定义的播放按钮的layout，用来加载定义好的播放界面
@@ -39,15 +40,25 @@ public class MainActivity extends RootActivity {
         //ActionBar actionBar = getSupportActionBar();
         //mMediaController.setSupportActionBar(actionBar);
 
-        mVideoView = findViewById(R.id.player);
+      //  mVideoView = findViewById(R.id.player);
         //mVideoView.setMediaController(null);
         // mVideoView.setHudView(mHudView);
 
         //设置videopath，开始播放
-        mVideoView.setVideoPath(path);
-        mVideoView.start();
+       // mVideoView.setVideoPath(path);
+       // mVideoView.start();
        // mVideoView.stopPlayback();
        // mVideoView.pause();
+        ItemsView itemsView = findViewById(R.id.collection);
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("red"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("yellow"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("red"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("yellow"));
+        itemsView.add(new RecordHolder("blue"));
 
     }
 
