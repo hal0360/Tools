@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -54,6 +55,16 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     public final void clicked(int id, CmdView cd){
         findViewById(id).setOnClickListener(this);
         cmds.put(id,cd);
+    }
+
+    public final void setTextView(int id, String str){
+        TextView txt = findViewById(id);
+        txt.setText(str);
+    }
+
+    public final String getTextView(int id){
+        TextView txt = findViewById(id);
+        return txt.getText().toString();
     }
 
     public final void delay(int milsec, final Cmd cmd){

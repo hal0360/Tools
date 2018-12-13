@@ -80,7 +80,7 @@ public class ItemsView extends RecyclerView {
         mobyAdaptor.notifyItemInserted(pos);
     }
 
-    public void add(int pos, List<ItemHolder> items){
+    public void add(int pos, List<? extends ItemHolder> items){
         mobyAdaptor.items.addAll(pos, items);
         mobyAdaptor.notifyItemInserted(pos);
     }
@@ -90,7 +90,7 @@ public class ItemsView extends RecyclerView {
         mobyAdaptor.notifyItemInserted(mobyAdaptor.items.size() - 1);
     }
 
-    public void add(List<ItemHolder> items){
+    public void add(List<? extends ItemHolder> items){
         mobyAdaptor.items.addAll(items);
         mobyAdaptor.notifyItemInserted(mobyAdaptor.items.size() - 1);
     }
@@ -105,7 +105,7 @@ public class ItemsView extends RecyclerView {
         mobyAdaptor.notifyDataSetChanged();
     }
 
-    public void replace(List<ItemHolder> items){
+    public void replace(List<? extends ItemHolder> items){
         mobyAdaptor.items.clear();
         mobyAdaptor.items.addAll(items);
         mobyAdaptor.notifyDataSetChanged();
