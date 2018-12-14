@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.Checkable;
 import android.widget.TextView;
 
-public abstract class ItemHolder implements View.OnClickListener{
+public abstract class ItemHolder{
 
     int rid;
     boolean alreadyRunned = false;
     MobyHolder myHolder;
-    SparseArray<CmdView> cmds = new SparseArray<>();
 
     public ItemHolder(int resID){
         rid = resID;
@@ -34,26 +33,19 @@ public abstract class ItemHolder implements View.OnClickListener{
     }
 
     public final void clicked(View v, CmdView cd){
-        v.setOnClickListener(this);
-        cmds.put(v.getId(),cd);
+        myHolder.clicked(v,cd);
     }
 
     public final Context getContex(){
         return myHolder.itemView.getContext();
     }
 
-    public final <T extends View & Checkable> T findView(int Rid){
-        return myHolder.itemView.findViewById(Rid);
+    public final <T extends View & Checkable> T findView(int rid){
+        return myHolder.findView(rid);
     }
 
     public final void clicked(int id, CmdView cd){
-        findView(id).setOnClickListener(this);
-        cmds.put(id,cd);
-    }
-
-    @Override
-    public void onClick(View v) {
-        cmds.get(v.getId()).exec(v);
+        myHolder.clicked(id,cd);
     }
 
     public final void alert(String message){

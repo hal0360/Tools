@@ -33,7 +33,7 @@ public class RecordHolder extends ItemHolder {
         clicked(R.id.avatar, new CmdView() {
             @Override
             public void exec(View v) {
-                alert("ape skull " + name);
+                alert("dick");
             }
         });
     }

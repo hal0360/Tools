@@ -59,6 +59,24 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("blue"));
         itemsView.add(new RecordHolder("yellow"));
         itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("red"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("yellow"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("red"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("yellow"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("red"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("yellow"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("red"));
+        itemsView.add(new RecordHolder("blue"));
+        itemsView.add(new RecordHolder("yellow"));
+        itemsView.add(new RecordHolder("blue"));
 
     }
 
