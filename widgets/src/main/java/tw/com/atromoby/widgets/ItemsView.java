@@ -137,16 +137,12 @@ public class ItemsView extends RecyclerView {
         @Override
         public void onBindViewHolder(@NonNull MobyHolder holder, int i) {
             ItemHolder itemHolder = items.get(i);
-
             if(!itemHolder.alreadyRunned){
-
+                itemHolder.alreadyRunned = true;
                 itemHolder.myHolder = holder;
                 holder.cHold = itemHolder;
-
                 itemHolder.onCreate();
-                itemHolder.alreadyRunned = true;
             }
-
             itemHolder.onBind();
         }
 
