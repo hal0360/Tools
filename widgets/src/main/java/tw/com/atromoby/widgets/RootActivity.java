@@ -101,7 +101,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    public final void speedTree(final View view, final CmdView cmdView){
+    public final void treeObserve(final View view, final CmdView cmdView){
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
