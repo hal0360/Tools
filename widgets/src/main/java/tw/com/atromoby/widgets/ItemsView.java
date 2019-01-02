@@ -113,11 +113,6 @@ public class ItemsView extends RecyclerView {
         scrollToPosition(0);
     }
 
-    public void release(){
-
-        this.setAdapter(null);
-    }
-
     public void refresh(){
         mobyAdaptor.notifyDataSetChanged();
     }
