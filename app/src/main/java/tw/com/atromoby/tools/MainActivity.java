@@ -1,8 +1,10 @@
 package tw.com.atromoby.tools;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 //import tw.com.atromoby.rtmplayer.IjkVideoView;
+import tw.com.atromoby.utils.Anime;
 import tw.com.atromoby.utils.LocalIntent;
 import tw.com.atromoby.utils.LocalReceiver;
 import tw.com.atromoby.widgets.ItemsView;
@@ -77,6 +79,11 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("blue"));
         itemsView.add(new RecordHolder("yellow"));
         itemsView.add(new RecordHolder("blue"));
+
+
+        ImageView ham = findViewById(R.id.hamView);
+        Anime anime = new Anime(ham, R.anim.bounce);
+        anime.start(true);
 
     }
 
