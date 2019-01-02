@@ -19,29 +19,29 @@ public class RecordHolder extends ItemHolder {
 
     @Override
     public void onBind() {
-
-    }
-
-    @Override
-    public void onRecycle() {
-
-    }
-
-    @Override
-    public void onCreate() {
-
-        Log.e("diff", "called: " + inc);
-        inc++;
-
-        TextView textView = findView(R.id.nameTxt);
-        textView.setText(name);
-
         clicked(R.id.avatar, new CmdView() {
             @Override
             public void exec(View v) {
                 alert("dick");
             }
         });
+    }
+
+    @Override
+    public void onRecycle() {
+        Log.e("diff", "called: " + inc);
+    }
+
+    @Override
+    public void onCreate() {
+
+       // Log.e("diff", "called: " + inc);
+      //  inc++;
+
+        TextView textView = findView(R.id.nameTxt);
+        textView.setText(name);
+
+
     }
 
 }

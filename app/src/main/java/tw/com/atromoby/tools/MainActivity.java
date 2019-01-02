@@ -2,7 +2,7 @@ package tw.com.atromoby.tools;
 
 import android.os.Bundle;
 
-import tw.com.atromoby.rtmplayer.IjkVideoView;
+//import tw.com.atromoby.rtmplayer.IjkVideoView;
 import tw.com.atromoby.utils.LocalIntent;
 import tw.com.atromoby.utils.LocalReceiver;
 import tw.com.atromoby.widgets.ItemsView;
@@ -10,7 +10,7 @@ import tw.com.atromoby.widgets.RootActivity;
 
 public class MainActivity extends RootActivity {
 
-    private IjkVideoView mVideoView;
+  //  private IjkVideoView mVideoView;
 
     private LocalReceiver localReceiver = new LocalReceiver() {
         @Override

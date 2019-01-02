@@ -1,5 +1,6 @@
 package tw.com.atromoby.widgets;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
@@ -135,7 +136,7 @@ public class ItemsView extends RecyclerView {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MobyHolder holder, int i) {
+        public void onBindViewHolder(@NonNull MobyHolder holder, @SuppressLint("RecyclerView") int i) {
             ItemHolder itemHolder = items.get(i);
             itemHolder.myHolder = holder;
             holder.holdID = i;
@@ -144,7 +145,6 @@ public class ItemsView extends RecyclerView {
                 itemHolder.onCreate();
             }
             itemHolder.onBind();
-            itemHolder.myHolder = null;
         }
 
         @Override
@@ -161,7 +161,9 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-            items.get(holder.holdID).onRecycle();
+            ItemHolder iHold = items.get(holder.holdID);
+            iHold.myHolder = null;
+            iHold.onRecycle();
         }
     }
 

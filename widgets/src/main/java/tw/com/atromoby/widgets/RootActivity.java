@@ -3,11 +3,13 @@ package tw.com.atromoby.widgets;
 import android.app.Service;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -97,6 +99,18 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
                 overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 break;
         }
+    }
+
+    public final void speedTree(final View view, final CmdView cmdView){
+        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                }
+                cmdView.exec(view);
+            }
+        });
     }
 
     public final void quickStartService(Class<? extends Service> serviceClass){
