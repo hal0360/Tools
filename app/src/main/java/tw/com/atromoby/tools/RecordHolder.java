@@ -25,14 +25,7 @@ public class RecordHolder extends ItemHolder {
         ImageView ham = findViewById(R.id.avatar);
 
 
-        clicked(R.id.avatar, new CmdView() {
-            @Override
-            public void exec(View v) {
-                ImageView ham = findViewById(R.id.avatar);
-                Anime anime = new Anime(ham, R.anim.bounce);
-                anime.start(true);
-            }
-        });
+
     }
 
     @Override

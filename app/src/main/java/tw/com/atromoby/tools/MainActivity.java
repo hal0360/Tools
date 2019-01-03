@@ -82,8 +82,8 @@ public class MainActivity extends RootActivity {
 
 
         ImageView ham = findViewById(R.id.hamView);
-        Anime anime = new Anime(ham, R.anim.bounce);
-        anime.start(true);
+        //Anime anime = new Anime(ham, R.anim.bounce);
+      //  anime.start(true);
 
     }
 

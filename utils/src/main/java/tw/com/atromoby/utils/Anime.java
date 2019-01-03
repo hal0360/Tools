@@ -1,6 +1,5 @@
 package tw.com.atromoby.utils;
 
-import android.content.Context;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -11,13 +10,13 @@ public class Anime implements Animation.AnimationListener {
     private View view;
     private Animation animation;
 
-    public Anime(View view, int rid){
-        this.view = view;
+    public Anime(int rid){
         animation = AnimationUtils.loadAnimation(view.getContext(), rid);
         animation.setAnimationListener(this);
     }
 
-    public void start(boolean repeat){
+    public void start(View view, boolean repeat){
+        this.view = view;
         this.repeat = repeat;
         view.clearAnimation();
         view.startAnimation(animation);
