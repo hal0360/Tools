@@ -2,8 +2,10 @@ package tw.com.atromoby.tools;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import tw.com.atromoby.utils.Anime;
 import tw.com.atromoby.widgets.CmdView;
 import tw.com.atromoby.widgets.ItemHolder;
 
@@ -19,10 +21,16 @@ public class RecordHolder extends ItemHolder {
 
     @Override
     public void onBind() {
+
+        ImageView ham = findViewById(R.id.avatar);
+
+
         clicked(R.id.avatar, new CmdView() {
             @Override
             public void exec(View v) {
-                alert("dick");
+                ImageView ham = findViewById(R.id.avatar);
+                Anime anime = new Anime(ham, R.anim.bounce);
+                anime.start(true);
             }
         });
     }
@@ -38,7 +46,7 @@ public class RecordHolder extends ItemHolder {
        // Log.e("diff", "called: " + inc);
       //  inc++;
 
-        TextView textView = findView(R.id.nameTxt);
+        TextView textView = findViewById(R.id.nameTxt);
         textView.setText(name);
 
 

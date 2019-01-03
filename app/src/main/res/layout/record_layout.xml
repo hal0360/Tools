@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card"
     android:layout_width="300dp"
-    android:layout_height="65dp"
+    android:layout_height="85dp"
     android:background="#DA70D6">
 
     <ImageView

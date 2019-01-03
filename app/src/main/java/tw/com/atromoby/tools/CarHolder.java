@@ -13,7 +13,7 @@ public class CarHolder extends ItemHolder {
 
     @Override
     public void onBind() {
-        TextView textView = findView(R.id.nameTxt);
+        TextView textView = findViewById(R.id.nameTxt);
         textView.setText(name);
     }
 

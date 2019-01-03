@@ -22,12 +22,12 @@ public abstract class ItemHolder{
     public abstract void onCreate();
 
     public final void setTextView(int id, String str){
-        TextView txt = findView(id);
+        TextView txt = findViewById(id);
         txt.setText(str);
     }
 
     public final String getTextView(int id){
-        TextView txt = findView(id);
+        TextView txt = findViewById(id);
         return txt.getText().toString().trim();
     }
 
@@ -39,7 +39,7 @@ public abstract class ItemHolder{
         return myHolder.itemView.getContext();
     }
 
-    public final <T extends View & Checkable> T findView(int rid){
+    public final <T extends View & Checkable> T findViewById(int rid){
         return myHolder.findView(rid);
     }
 
