@@ -23,7 +23,9 @@ public class Anime implements Animation.AnimationListener {
     }
 
     public void clear(){
-        view.clearAnimation();
+        if(view != null){
+            view.clearAnimation();
+        }
     }
 
     @Override
@@ -33,7 +35,7 @@ public class Anime implements Animation.AnimationListener {
 
     @Override
     public void onAnimationEnd(Animation animat) {
-        if(repeat){
+        if(repeat && view != null){
             view.startAnimation(animation);
         }
     }
