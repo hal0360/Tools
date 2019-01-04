@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 class MobyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    int holdID;
     private SparseArray<CmdView> cmds = new SparseArray<>();
 
     MobyHolder(@NonNull View itemView) {

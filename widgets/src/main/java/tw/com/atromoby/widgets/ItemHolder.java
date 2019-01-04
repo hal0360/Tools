@@ -7,19 +7,16 @@ import android.widget.TextView;
 
 public abstract class ItemHolder{
 
-    int rid;
-    boolean alreadyRunned = false;
+    int itemHolderrid;
     MobyHolder myHolder;
 
     public ItemHolder(int resID){
-        rid = resID;
+        itemHolderrid = resID;
     }
 
     public abstract void onBind();
 
     public abstract void onRecycle();
-
-    public abstract void onCreate();
 
     public final void setTextView(int id, String str){
         TextView txt = findViewById(id);
@@ -39,7 +36,7 @@ public abstract class ItemHolder{
         return myHolder.itemView.getContext();
     }
 
-    public final <T extends View & Checkable> T findViewById(int rid){
+    protected final <T extends View & Checkable> T findViewById(int rid){
         return myHolder.findView(rid);
     }
 

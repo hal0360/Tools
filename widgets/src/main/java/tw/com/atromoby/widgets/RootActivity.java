@@ -18,9 +18,9 @@ import java.util.Locale;
 
 public abstract class RootActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private SparseArray<CmdView> cmds = new SparseArray<>();
+    private final SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
-    public static int language = 0;
+    private static int language = 0;
 
     public void switchLanguage(int lan){
         language = lan;
@@ -47,11 +47,12 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
                 break; // optional
             default : locale = Locale.US;
         }
+        /*
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        handler = new Handler();
+        handler = new Handler();*/
     }
 
     public final void clicked(int id, CmdView cd){

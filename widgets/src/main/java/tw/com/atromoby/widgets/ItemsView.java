@@ -131,20 +131,15 @@ public class ItemsView extends RecyclerView {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull MobyHolder holder, @SuppressLint("RecyclerView") int i) {
+        public void onBindViewHolder(@NonNull final MobyHolder holder, final int i) {
             ItemHolder itemHolder = items.get(i);
             itemHolder.myHolder = holder;
-            holder.holdID = i;
-            if(!itemHolder.alreadyRunned){
-                itemHolder.alreadyRunned = true;
-                itemHolder.onCreate();
-            }
             itemHolder.onBind();
         }
 
         @Override
         public int getItemViewType(int position) {
-            return items.get(position).rid;
+            return items.get(position).itemHolderrid;
         }
 
         @NonNull
@@ -156,7 +151,7 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-            ItemHolder iHold = items.get(holder.holdID);
+            ItemHolder iHold = items.get(holder.getAdapterPosition());
             iHold.myHolder = null;
             iHold.onRecycle();
         }

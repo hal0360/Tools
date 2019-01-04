@@ -27,20 +27,7 @@ public class Kit {
         return newList;
     }
 
-    public static void viewDelay(final View view, final CmdView cmdView){
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                cmdView.exec(view);
-            }
-        });
-    }
 
-    public static void setLocale(Activity context, Locale locale){
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getBaseContext().getResources().updateConfiguration(config, context.getBaseContext().getResources().getDisplayMetrics());
-    }
+
 
 }

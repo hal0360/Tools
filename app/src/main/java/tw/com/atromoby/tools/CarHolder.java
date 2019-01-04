@@ -22,9 +22,5 @@ public class CarHolder extends ItemHolder {
 
     }
 
-    @Override
-    public void onCreate() {
-
-    }
 
 }

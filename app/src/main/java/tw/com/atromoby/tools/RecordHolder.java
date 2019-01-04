@@ -1,12 +1,8 @@
 package tw.com.atromoby.tools;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import tw.com.atromoby.utils.Anime;
-import tw.com.atromoby.widgets.CmdView;
 import tw.com.atromoby.widgets.ItemHolder;
 
 public class RecordHolder extends ItemHolder {
@@ -22,9 +18,11 @@ public class RecordHolder extends ItemHolder {
     @Override
     public void onBind() {
 
-        ImageView ham = findViewById(R.id.avatar);
+        TextView textView = findViewById(R.id.nameTxt);
+        textView.setText(name);
 
-
+      //  TextView textView = findViewById(R.id.nameTxt);
+        //   textView.setText(name);
 
     }
 
@@ -33,16 +31,5 @@ public class RecordHolder extends ItemHolder {
         Log.e("diff", "called: " + inc);
     }
 
-    @Override
-    public void onCreate() {
-
-       // Log.e("diff", "called: " + inc);
-      //  inc++;
-
-        TextView textView = findViewById(R.id.nameTxt);
-        textView.setText(name);
-
-
-    }
 
 }
