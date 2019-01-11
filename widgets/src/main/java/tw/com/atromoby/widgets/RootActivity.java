@@ -1,8 +1,8 @@
 package tw.com.atromoby.widgets;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,45 +15,29 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-
 public abstract class RootActivity extends AppCompatActivity implements View.OnClickListener{
 
     private final SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
-    private static int language = 0;
+    private static Locale locale = Locale.US;
 
-    public void switchLanguage(int lan){
-        language = lan;
+    public void switchLocale(Locale loc){
+        locale = loc;
         recreate();
     }
 
-    public void setLanguage(int lan){
-        language = lan;
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        Context context = MyContextWrap.wrap(newBase, locale);
+        super.attachBaseContext(context);
     }
 
     @Override
     protected void onCreate(Bundle saveInstanceState){
         super.onCreate(saveInstanceState);
-        Locale locale;
-        switch(language) {
-            case Language.CHINESE_CH :
-                locale = Locale.CHINA;
-                break; // optional
-            case Language.ENGLISH :
-                locale = Locale.US;
-                break; // optional
-            case Language.CHINESE_TW :
-                locale = Locale.TAIWAN;
-                break; // optional
-            default : locale = Locale.US;
-        }
-        /*
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        handler = new Handler();*/
+        handler = new Handler();
     }
+
 
     public final void clicked(int id, CmdView cd){
         findViewById(id).setOnClickListener(this);

@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tools</string>
-
-    
+    <string name="test">bad</string>
+    <string name="test2">good</string>
 </resources>
