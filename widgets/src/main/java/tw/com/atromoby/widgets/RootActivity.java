@@ -144,14 +144,22 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         finish();
     }
 
-    @SuppressWarnings("ConstantConditions")
     public final int getPassedInt(){
-        return getIntent().getExtras().getInt("AtromoRootActVal");
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!= null){
+           return bundle.getInt("AtromoRootActVal");
+        }else{
+            return 0;
+        }
     }
 
-    @SuppressWarnings("ConstantConditions")
     public final String getPassedStr(){
-        return getIntent().getExtras().getString("AtromoRootActVal");
+        Bundle bundle = getIntent().getExtras();
+        if(bundle!= null){
+            return bundle.getString("AtromoRootActVal");
+        }else{
+            return null;
+        }
     }
 
     /*
