@@ -73,6 +73,20 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
+    public final void pushActivity(Class<? extends AppCompatActivity> actClass, int val){
+        Intent intent = new Intent(this, actClass);
+        intent.putExtra("AtromoRootActVal", val);
+        startActivity(intent);
+
+    }
+
+    public final void pushActivity(Class<? extends AppCompatActivity> actClass, String val){
+        Intent intent = new Intent(this, actClass);
+        intent.putExtra("AtromoRootActVal", val);
+        startActivity(intent);
+    }
+
+/*
     public final void pushActivity(Class<? extends AppCompatActivity> actClass, int anime){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
@@ -84,7 +98,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
                 overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
                 break;
         }
-    }
+    }*/
 
     public final void treeObserve(final View view, final CmdView cmdView){
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -113,14 +127,34 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     public final void toActivity(Class<? extends AppCompatActivity> actClass){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                finish();
-            }
-        }, 500);
+        finish();
     }
 
+    public final void toActivity(Class<? extends AppCompatActivity> actClass, int val){
+        Intent intent = new Intent(this, actClass);
+        intent.putExtra("AtromoRootActVal", val);
+        startActivity(intent);
+        finish();
+    }
+
+    public final void toActivity(Class<? extends AppCompatActivity> actClass, String val){
+        Intent intent = new Intent(this, actClass);
+        intent.putExtra("AtromoRootActVal", val);
+        startActivity(intent);
+        finish();
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public final int getPassedInt(){
+        return getIntent().getExtras().getInt("AtromoRootActVal");
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    public final String getPassedStr(){
+        return getIntent().getExtras().getString("AtromoRootActVal");
+    }
+
+    /*
     public final void toActivity(Class<? extends AppCompatActivity> actClass, int anime){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
@@ -138,7 +172,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
                 finish();
             }
         }, 500);
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
