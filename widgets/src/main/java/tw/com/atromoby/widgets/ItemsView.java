@@ -1,6 +1,5 @@
 package tw.com.atromoby.widgets;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
