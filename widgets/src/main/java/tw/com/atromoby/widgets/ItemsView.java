@@ -76,6 +76,10 @@ public class ItemsView extends RecyclerView {
         setAdapter(mobyAdaptor);
     }
 
+    public void refresh(int pos) {
+        mobyAdaptor.notifyItemChanged(pos);
+    }
+
     public void add(int pos, ItemHolder item){
         mobyAdaptor.items.add(pos, item);
         mobyAdaptor.notifyItemInserted(pos);
