@@ -36,7 +36,6 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
         final RecordHolder recordHolder = new RecordHolder("sd");
         itemsView.add(recordHolder);
         itemsView.add(new RecordHolder("sd"));
@@ -66,12 +65,11 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("sd"));
 
 
-
         clicked(R.id.enButt, new CmdView() {
             @Override
             public void exec(View v) {
-                recordHolder.name = "nigger";
-                itemsView.refresh();
+                itemsView.smoothScrollToPosition(14);
+
             }
         });
     }

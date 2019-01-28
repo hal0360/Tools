@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.widget.Checkable;
+import android.widget.TextView;
 
 public class Popup implements View.OnClickListener{
 
@@ -23,6 +24,16 @@ public class Popup implements View.OnClickListener{
             dialog = new Dialog(context, style_id);
             setUp(resource_id);
         }
+
+    public final void setTextView(int id, String str){
+        TextView txt = findViewById(id);
+        txt.setText(str);
+    }
+
+    public final String getTextView(int id){
+        TextView txt = findViewById(id);
+        return txt.getText().toString().trim();
+    }
 
         private void setUp(int id){
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

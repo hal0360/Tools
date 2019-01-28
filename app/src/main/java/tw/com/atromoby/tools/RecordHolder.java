@@ -19,7 +19,7 @@ public class RecordHolder extends ItemHolder {
     public void onBind() {
 
         TextView textView = findViewById(R.id.nameTxt);
-        textView.setText(name);
+        textView.setText(position + "");
 
       //  TextView textView = findViewById(R.id.nameTxt);
         //   textView.setText(name);

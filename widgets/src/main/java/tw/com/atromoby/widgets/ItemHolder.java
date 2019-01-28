@@ -9,6 +9,7 @@ public abstract class ItemHolder{
 
     int itemHolderrid;
     MobyHolder myHolder;
+    public int position;
 
     public ItemHolder(int resID){
         itemHolderrid = resID;

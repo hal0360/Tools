@@ -137,6 +137,7 @@ public class ItemsView extends RecyclerView {
         @Override
         public void onBindViewHolder(@NonNull final MobyHolder holder, final int i) {
             ItemHolder itemHolder = items.get(i);
+            itemHolder.position = holder.getAdapterPosition();
             itemHolder.myHolder = holder;
             itemHolder.onBind();
         }
