@@ -82,6 +82,7 @@ public class ItemsView extends RecyclerView {
     public void add(int pos, ItemHolder item){
         mobyAdaptor.items.add(pos, item);
         mobyAdaptor.notifyItemInserted(pos);
+
     }
 
     public void add(int pos, List<? extends ItemHolder> items){
@@ -154,9 +155,12 @@ public class ItemsView extends RecyclerView {
 
         @Override
         public void onViewRecycled (@NonNull MobyHolder holder) {
-            ItemHolder iHold = items.get(holder.getAdapterPosition());
-            iHold.myHolder = null;
-            iHold.onRecycle();
+            int hPos = holder.getAdapterPosition();
+            if(hPos >= 0){
+                ItemHolder iHold = items.get(holder.getAdapterPosition());
+                iHold.myHolder = null;
+                iHold.onRecycle();
+            }
         }
     }
 

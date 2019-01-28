@@ -7,7 +7,7 @@ import tw.com.atromoby.widgets.ItemHolder;
 
 public class RecordHolder extends ItemHolder {
 
-    private String name;
+    public String name;
     private int inc = 0;
 
     public RecordHolder(String n) {
