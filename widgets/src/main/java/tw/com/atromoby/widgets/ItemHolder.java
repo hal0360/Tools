@@ -29,6 +29,9 @@ public abstract class ItemHolder{
         return txt.getText().toString().trim();
     }
 
+
+
+
     public final void clicked(View v, CmdView cd){
         myHolder.clicked(v,cd);
     }
