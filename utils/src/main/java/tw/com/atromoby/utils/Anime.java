@@ -22,7 +22,14 @@ public class Anime implements Animation.AnimationListener {
         view.startAnimation(animation);
     }
 
+    public void start(View view){
+        this.view = view;
+        view.clearAnimation();
+        view.startAnimation(animation);
+    }
+
     public void clear(){
+        animation.setAnimationListener(null);
         if(view != null){
             view.clearAnimation();
         }

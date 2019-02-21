@@ -31,7 +31,6 @@ public abstract class ItemHolder{
 
 
 
-
     public final void clicked(View v, CmdView cd){
         myHolder.clicked(v,cd);
     }

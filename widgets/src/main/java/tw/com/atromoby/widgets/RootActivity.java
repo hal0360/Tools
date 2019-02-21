@@ -20,6 +20,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     private final SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
     private static Locale locale = Locale.US;
+    private int runnableToken = 0;
 
     public void switchLocale(Locale loc){
         locale = loc;
@@ -54,13 +55,20 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         return txt.getText().toString();
     }
 
-    public final void delay(int milsec, final Cmd cmd){
-        handler.postDelayed(new Runnable() {
+    public final int delay(int milsec, final Cmd cmd){
+        runnableToken++;
+        Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 cmd.exec();
             }
-        }, milsec);
+        };
+        handler.postDelayed(runnable,runnableToken, milsec);
+        return runnableToken;
+    }
+
+    public final void cancelDelay(int token){
+        handler.removeCallbacksAndMessages(token);
     }
 
     public final void clicked(View v, CmdView cd){
@@ -85,6 +93,8 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         intent.putExtra("AtromoRootActVal", val);
         startActivity(intent);
     }
+
+
 
 /*
     public final void pushActivity(Class<? extends AppCompatActivity> actClass, int anime){

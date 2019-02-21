@@ -10,7 +10,6 @@ import tw.com.atromoby.utils.LocalReceiver;
 import tw.com.atromoby.widgets.CmdView;
 import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
-
 import tw.com.atromoby.rtmplayer.IjkVideoView;
 
 public class MainActivity extends RootActivity {
@@ -30,7 +29,6 @@ public class MainActivity extends RootActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         final ItemsView itemsView = findViewById(R.id.iiView);
         itemsView.add(new RecordHolder("sd"));
@@ -63,7 +61,6 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));
-
 
         clicked(R.id.enButt, new CmdView() {
             @Override
