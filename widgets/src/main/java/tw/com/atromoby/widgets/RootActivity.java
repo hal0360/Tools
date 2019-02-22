@@ -20,7 +20,6 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     private final SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
     private static Locale locale = Locale.US;
-    private int runnableToken = 0;
 
     public void switchLocale(Locale loc){
         locale = loc;
@@ -55,20 +54,17 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         return txt.getText().toString();
     }
 
-    public final int delay(int milsec, final Cmd cmd){
-        runnableToken++;
-        Runnable runnable = new Runnable() {
+    public final void delay(int milsec, final Cmd cmd){
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 cmd.exec();
             }
-        };
-        handler.postDelayed(runnable,runnableToken, milsec);
-        return runnableToken;
+        }, milsec);
     }
 
-    public final void cancelDelay(int token){
-        handler.removeCallbacksAndMessages(token);
+    public final void cancelDelays(){
+        handler.removeCallbacksAndMessages(null);
     }
 
     public final void clicked(View v, CmdView cd){

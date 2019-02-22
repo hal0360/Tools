@@ -48,6 +48,7 @@ public class ItemsView extends RecyclerView {
     }*/
 
     private void init(Context context, AttributeSet attrs){
+
         mobyAdaptor = new ItemsView.MobyAdaptor(new ArrayList<ItemHolder>());
         setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
@@ -82,7 +83,6 @@ public class ItemsView extends RecyclerView {
     public void add(int pos, ItemHolder item){
         mobyAdaptor.items.add(pos, item);
         mobyAdaptor.notifyItemInserted(pos);
-
     }
 
     public void add(int pos, List<? extends ItemHolder> items){
@@ -107,6 +107,10 @@ public class ItemsView extends RecyclerView {
 
     public void scrollTo(int pos){
         smoothScrollToPosition(pos);
+    }
+
+    public int findScroll() {
+       return  ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
     }
 
     public void delete(){
