@@ -92,7 +92,7 @@ public class MainActivity extends RootActivity {
         delay(1000, new Cmd() {
             @Override
             public void exec() {
-                itemsView.scrollTo(10);
+                itemsView.scrollTo(4);
             }
         });
 
