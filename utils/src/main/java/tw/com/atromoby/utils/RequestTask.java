@@ -1,6 +1,5 @@
 package tw.com.atromoby.utils;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import java.io.BufferedReader;
@@ -11,18 +10,22 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RequestTask extends AsyncTask<String,String,Response>
 {
-    private String aus;
     private String url;
     private CmdRes cmdResSuc, cmdResErr, cmdResFail;
+    private List<String[]> headers;
+    private boolean canceled = false;
+    private int timeOut = 6000;
+    private String content;
 
-    public RequestTask(Context context, String url, String au) {
+    public RequestTask(String url) {
         this.url = url;
-        aus = au;
+        headers = new ArrayList<>();
     }
 
     public void onSuccess(CmdRes cmd){
@@ -38,12 +41,27 @@ public class RequestTask extends AsyncTask<String,String,Response>
     }
 
     public void send(String data){
-            execute(data);
+        content = data;
+        execute();
     }
 
     public void fetch(){
-        String data = null;
-        execute(data);
+        execute();
+    }
+
+    public void setHeader(String key, String value){
+        headers.add(new String[]{key,value});
+    }
+
+    public void cancel(){
+        canceled = true;
+        cmdResErr = null;
+        cmdResFail = null;
+        cmdResSuc = null;
+    }
+
+    public void setTimeOut(int milSec){
+        timeOut = milSec;
     }
 
     @Override
@@ -53,11 +71,14 @@ public class RequestTask extends AsyncTask<String,String,Response>
 
     @Override
     protected Response doInBackground(String... params) {
-        return myHttpConnection(params[0], url, aus);
+        return myHttpConnection(url);
     }
 
     @Override
     protected void onPostExecute(Response response) {
+        if(canceled) {
+            return;
+        }
         if(response.statusCode >= 200 && response.statusCode < 300){
             if(cmdResSuc != null) cmdResSuc.exec(response);
         }else if(response.statusCode >= 400 && response.statusCode < 500){
@@ -67,7 +88,7 @@ public class RequestTask extends AsyncTask<String,String,Response>
         }
     }
 
-    public static Response myHttpConnection(String content, String url, String aus){
+    private Response myHttpConnection(String url){
         HttpURLConnection urlConnection = null;
         String result = "N/A";
         int statusCode = 900;
@@ -81,12 +102,12 @@ public class RequestTask extends AsyncTask<String,String,Response>
                 urlConnection.setDoOutput(false);
                 urlConnection.setRequestMethod("GET");
             }
-            urlConnection.setRequestProperty("Content-Type", "application/json");
-            urlConnection.setRequestProperty("Accept", "application/json");
-            if(aus != null){
-                urlConnection.setRequestProperty("Authorization", "Basic " + aus);
+
+            for(String[] header: headers){
+                urlConnection.setRequestProperty(header[0], header[1]);
             }
-            urlConnection.setConnectTimeout(6000);
+
+            urlConnection.setConnectTimeout(timeOut);
             urlConnection.connect();
             if(content != null){
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(urlConnection.getOutputStream(), "UTF-8"));
