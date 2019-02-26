@@ -16,15 +16,19 @@ public class Anime implements Animation.AnimationListener {
     }
 
     public void start(View view, boolean repeat){
+        if(this.view != null){
+            this.view.clearAnimation();
+        }
         this.view = view;
         this.repeat = repeat;
-        view.clearAnimation();
         view.startAnimation(animation);
     }
 
     public void start(View view){
+        if(this.view != null){
+            this.view.clearAnimation();
+        }
         this.view = view;
-        view.clearAnimation();
         view.startAnimation(animation);
     }
 
@@ -32,6 +36,7 @@ public class Anime implements Animation.AnimationListener {
         animation.setAnimationListener(null);
         if(view != null){
             view.clearAnimation();
+            view = null;
         }
     }
 
