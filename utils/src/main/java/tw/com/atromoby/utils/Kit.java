@@ -3,6 +3,7 @@ package tw.com.atromoby.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class Kit {
     }
 
 
-
+    public static int color(String colorStr){
+        return Color.parseColor(colorStr);
+    }
 
 }
