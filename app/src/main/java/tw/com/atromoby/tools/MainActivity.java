@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import tw.com.atromoby.utils.CmdInt;
@@ -19,6 +21,7 @@ import tw.com.atromoby.widgets.CmdView;
 import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
 import tw.com.atromoby.rtmplayer.IjkVideoView;
+import tw.com.atromoby.widgets.SpinList;
 
 public class MainActivity extends RootActivity {
 
@@ -80,14 +83,6 @@ public class MainActivity extends RootActivity {
         });
 
 
-        TimeTask timeTask = new TimeTask();
-        timeTask.countdown(3900, new CmdInt() {
-            @Override
-            public void exec(int i) {
-                alert("reman: " + i);
-            }
-        });
-
 
         delay(1000, new Cmd() {
             @Override
@@ -123,9 +118,21 @@ public class MainActivity extends RootActivity {
                     }
                 });*/
 
-
             }
         });
+
+
+        SpinList spinList = findViewById(R.id.spinner);
+        List<String> strings = new ArrayList<>();
+        strings.add("apple");
+        strings.add("orange");
+        strings.add("pineapple");
+        strings.add("kiwi fruit");
+        spinList.init(strings);
+
+
+
+
 
     }
 

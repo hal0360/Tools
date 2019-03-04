@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A52A2A"
     tools:context=".MainActivity">
 
 
@@ -34,19 +35,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <android.support.v7.widget.AppCompatSpinner
+    <tw.com.atromoby.widgets.SpinList
         android:id="@+id/spinner"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
+        android:layout_width="200dp"
+        android:layout_height="75dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/dada_bac"
+        android:backgroundTint="#fff"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/enButt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iiView" />
+        app:layout_constraintTop_toBottomOf="@+id/iiView"
+        tools:targetApi="lollipop" />
+
 </android.support.constraint.ConstraintLayout>

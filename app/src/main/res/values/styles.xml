@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="spinListTheme" parent="android:Widget.Spinner">
+
+        <item name="android:dropDownSelector">#fff</item>
+    </style>
+
 </resources>

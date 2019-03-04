@@ -15,25 +15,21 @@ public class SpinList extends AppCompatSpinner {
 
     private Context context;
     private ArrayAdapter<String> dataAdapter = null;
-   // private CmdInt cmdInt;
-    private AppCompatSpinner spinner;
+    private CmdInt cmdInt;
 
     public SpinList(Context context) {
         super(context);
-        setup(context, null);
         this.context = context;
     }
 
     public SpinList(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setup(context, attrs);
         this.context = context;
     }
 
-  //  public void selected(CmdInt cmdInt) {
-    //    if(dataAdapter != null) this.cmdInt = cmdInt;
-    //    else throw new ArrayIndexOutOfBoundsException("data not yet initiated");
-   // }
+    public void selected(CmdInt cmdInt) {
+        this.cmdInt = cmdInt;
+    }
 
     public void init(String[] strings){
         dataAdapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, strings);
@@ -57,46 +53,18 @@ public class SpinList extends AppCompatSpinner {
 
     private void initAdapter(){
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        setAdapter(dataAdapter);
 
-        /*
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                ((TextView) spinner.getSelectedView()).setTextColor(Color.parseColor("#FFFF00"));
-                ((TextView) spinner.getSelectedView()).setTextSize(getResources().getDimension(R.dimen.standardTxtSize));
-                cmdInt.exec(i);
+                if(cmdInt != null) {
+                    cmdInt.exec(i);
+                }
+                ((TextView) getSelectedView()).setTextColor(Color.parseColor("#FFFFFF"));
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
-        });*/
-    }
-
-    private void setup(Context context, AttributeSet attrs) {
-        /*
-        View.inflate(context, R.layout.yoobie_spinner_layout, this);
-        setDescendantFocusability(FOCUS_BLOCK_DESCENDANTS);
-
-        spinner = findViewById(R.id.spinner);
-        ImageView icon = findViewById(R.id.spinnerImg);
-
-        if (attrs != null) {
-            TypedArray a = context.getTheme().obtainStyledAttributes(
-                    attrs,
-                    R.styleable.YoobieSpinner,
-                    0, 0);
-
-            Drawable iconImg = null;
-
-            try {
-                iconImg = a.getDrawable(R.styleable.YoobieSpinner_spinnerIcon);
-            } catch (Exception e) {
-                Log.e("YoobieSpinner", "There was an error loading attributes.");
-            } finally {
-                a.recycle();
-            }
-
-            icon.setBackgroundDrawable(iconImg);
-        }*/
+        });
     }
 }
