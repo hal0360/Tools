@@ -7,7 +7,6 @@
     android:background="#A52A2A"
     tools:context=".MainActivity">
 
-
     <tw.com.atromoby.widgets.ItemsView
         android:id="@+id/iiView"
         android:layout_width="322dp"

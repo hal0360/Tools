@@ -16,6 +16,8 @@ public class SpinList extends AppCompatSpinner {
     private Context context;
     private ArrayAdapter<String> dataAdapter = null;
     private CmdInt cmdInt;
+    private int tSize = 16;
+    private String tColor = "#ffffff";
 
     public SpinList(Context context) {
         super(context);
@@ -51,6 +53,14 @@ public class SpinList extends AppCompatSpinner {
         initAdapter();
     }
 
+    public void setColor(String color){
+        tColor = color;
+    }
+
+    public void textSize(int size){
+        tSize = size;
+    }
+
     private void initAdapter(){
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         setAdapter(dataAdapter);
@@ -61,7 +71,8 @@ public class SpinList extends AppCompatSpinner {
                 if(cmdInt != null) {
                     cmdInt.exec(i);
                 }
-                ((TextView) getSelectedView()).setTextColor(Color.parseColor("#FFFFFF"));
+                ((TextView) getSelectedView()).setTextColor(Color.parseColor(tColor));
+                ((TextView) getSelectedView()).setTextSize(tSize);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}

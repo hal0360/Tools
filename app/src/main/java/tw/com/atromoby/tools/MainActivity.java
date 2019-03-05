@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import tw.com.atromoby.utils.CmdInt;
 import tw.com.atromoby.utils.LocalIntent;
 import tw.com.atromoby.utils.LocalReceiver;
 import tw.com.atromoby.utils.TimeTask;
 import tw.com.atromoby.widgets.Cmd;
 import tw.com.atromoby.widgets.CmdView;
+import tw.com.atromoby.widgets.CmdInt;
 import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
 import tw.com.atromoby.rtmplayer.IjkVideoView;
@@ -83,7 +83,6 @@ public class MainActivity extends RootActivity {
         });
 
 
-
         delay(1000, new Cmd() {
             @Override
             public void exec() {
@@ -130,7 +129,14 @@ public class MainActivity extends RootActivity {
         strings.add("kiwi fruit");
         spinList.init(strings);
 
+        spinList.setColor("#00FFFF");
 
+        spinList.selected(new CmdInt() {
+            @Override
+            public void exec(int i) {
+                alert("no. " + i);
+            }
+        });
 
 
 
