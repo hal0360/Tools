@@ -82,15 +82,6 @@ public class MainActivity extends RootActivity {
             }
         });
 
-
-        delay(1000, new Cmd() {
-            @Override
-            public void exec() {
-                itemsView.scrollTo(4);
-            }
-        });
-
-
         itemsView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -109,13 +100,15 @@ public class MainActivity extends RootActivity {
 
                 }
 
-                /*
-                delay(200, new Cmd() {
-                    @Override
-                    public void exec() {
-                        itemsView.scrollTo(iis);
-                    }
-                });*/
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    final int curPos = itemsView.findScroll();
+                    delay(200, new Cmd() {
+                        @Override
+                        public void exec() {
+                            itemsView.scrollTo(curPos);
+                        }
+                    });
+                }
 
             }
         });
