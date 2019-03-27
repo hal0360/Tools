@@ -19,6 +19,7 @@ public class Anime implements Animation.AnimationListener {
         if(this.view != null){
             this.view.clearAnimation();
         }
+
         this.view = view;
         this.repeat = repeat;
         view.startAnimation(animation);
