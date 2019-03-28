@@ -9,8 +9,8 @@
 
     <tw.com.atromoby.tools.curlView.CurlView
         android:id="@+id/curry"
-        android:layout_width="205dp"
-        android:layout_height="177dp"
+        android:layout_width="224dp"
+        android:layout_height="303dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"

@@ -25,7 +25,9 @@
         <activity android:name=".Main2Activity">
 
         </activity>
-        <activity android:name=".Main3Activity">
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Main3Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
