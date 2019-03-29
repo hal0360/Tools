@@ -48,7 +48,7 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
     }
 
     public int getPageCount() {
-        return 2;
+        return 1;
     }
 
     private Bitmap loadBitmap(int width, int height, int index) {
@@ -78,12 +78,7 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
                 break;
             }
             // Second case is image on back side, solid colored front.
-            case 1: {
-                Bitmap back = loadBitmap(width, height, 1);
-                page.setTexture(back, CurlPage.SIDE_FRONT);
-                page.setColor(Color.rgb(127, 140, 180), CurlPage.SIDE_BACK);
-                break;
-            }
+
         }
     }
 }

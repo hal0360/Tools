@@ -92,7 +92,12 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
     private boolean badass = false;
 
 
+private int RIGHTMODE = 0;
+    private int LEFTMODE = 1;
+    private int TOPMODE = 2;
+    private int BOTTOMMODE = 3;
 
+    private int flipMode = 0;
 
 
     // One page is the default.
@@ -151,6 +156,8 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
     @Override
     public void onDrawFrame() {
         // We are not animating.
+
+
         if (mAnimate == false) {
             return;
         }
@@ -244,6 +251,7 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
         RectF rightRect = mRenderer.getPageRect(CurlRenderer.PAGE_RIGHT);
         RectF leftRect = mRenderer.getPageRect(CurlRenderer.PAGE_LEFT);
 
+
         // Store pointer position.
         mPointerPos.mPos.set(me.getX(), me.getY());
         mRenderer.translate(mPointerPos.mPos);
@@ -270,21 +278,32 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
                     mDragStartPos.y = rightRect.bottom;
                 }
 
-                Log.e("mDragStartPos", "x: " + mDragStartPos.x + " y: " + mDragStartPos.y);
 
-                float halfX = (rightRect.right + rightRect.left) / 2;
+                mDragStartPos.x = rightRect.right;
 
-                if (mDragStartPos.x < halfX && mCurrentIndex > 0) {
-                    mDragStartPos.x = rightRect.left;
-                    startCurl(CURL_LEFT);
-                } else if (mDragStartPos.x >= halfX && mCurrentIndex < mPageProvider.getPageCount()) {
-                    mDragStartPos.x = rightRect.right;
-                    if (!mAllowLastPageCurl
-                            && mCurrentIndex >= mPageProvider.getPageCount() - 1) {
-                        return false;
-                    }
+
+                float rightAbleArea = (rightRect.right)*2/3;
+                float leftAbleArea = (rightRect.left)*2/3;
+                float topAbleArea = (rightRect.top)*2/3;
+                float bottomAbleArea = (rightRect.bottom)*2/3;
+
+                Log.e("pos", "leftAbleArea: " + leftAbleArea + " mPointerPos: " + mPointerPos.mPos.x);
+
+
+                if(mPointerPos.mPos.x > rightAbleArea){
+                    flipMode = RIGHTMODE;
+                    startCurl(CURL_RIGHT);
+                }else if(mPointerPos.mPos.x < leftAbleArea){
+                    flipMode = LEFTMODE;
+                    startCurl(CURL_RIGHT);
+                }else if(mPointerPos.mPos.y > topAbleArea){
+                    flipMode = TOPMODE;
+                    startCurl(CURL_RIGHT);
+                }else{
+                    flipMode = BOTTOMMODE;
                     startCurl(CURL_RIGHT);
                 }
+
 
                 if (mCurlState == CURL_NONE) {
                     return false;
@@ -296,6 +315,7 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
             }
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP: {
+
                 if (mCurlState == CURL_LEFT || mCurlState == CURL_RIGHT) {
                     // Animation source is the point from where animation starts.
                     // Also it's handled in a way we actually simulate touch events
@@ -331,6 +351,8 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
                     mAnimate = true;
                     requestRender();
                 }
+
+
                 break;
             }
         }
@@ -360,6 +382,7 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
      * Sets mPageCurl curl position.
      */
     private void setCurlPos(PointF curlPos, PointF curlDir, double radius) {
+
 
         // First reposition curl so that page doesn't 'rip off' from book.
 		/*
@@ -421,14 +444,27 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
 			mPageCurl.reset();
 		}
 		requestRender();*/
-
+/*
 if(badass){
     curlDir.x = -0.7f;
 }else {
     curlDir.x = 0;
-}
+}*/
 
-        curlDir.y = 1;
+        if(flipMode == RIGHTMODE ){
+            curlDir.x = -1;
+            curlDir.y = 0;
+        }else if(flipMode == LEFTMODE){
+            curlDir.x = 1;
+            curlDir.y = 0;
+        }else if(flipMode == TOPMODE){
+            curlDir.x = 0;
+            curlDir.y = -1;
+        }else{
+            curlDir.x = 0;
+            curlDir.y = 1;
+        }
+
         mPageCurl.curl(curlPos, curlDir, radius);
         requestRender();
     }
@@ -690,8 +726,7 @@ if(badass){
         // First reset page to initial state.
         page.reset();
         // Ask page provider to fill it up with bitmaps and colors.
-        mPageProvider.updatePage(page, mPageBitmapWidth, mPageBitmapHeight,
-                index);
+        mPageProvider.updatePage(page, mPageBitmapWidth, mPageBitmapHeight, index);
     }
 
     /**
@@ -740,8 +775,7 @@ if(badass){
 
             if (mCurlState == CURL_RIGHT) {
                 mPageCurl.setFlipTexture(true);
-                mPageCurl.setRect(mRenderer
-                        .getPageRect(CurlRenderer.PAGE_RIGHT));
+                mPageCurl.setRect(mRenderer.getPageRect(CurlRenderer.PAGE_RIGHT));
             } else {
                 mPageCurl.setFlipTexture(false);
                 mPageCurl

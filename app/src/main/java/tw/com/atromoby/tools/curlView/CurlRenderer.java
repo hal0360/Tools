@@ -59,6 +59,11 @@ public class CurlRenderer implements GLSurfaceView.Renderer {
 	// Rect for render area.
 	private RectF mViewRect = new RectF();
 
+
+	private int RIGHTMODE = 0;
+    private int LEFTMODE = 1;
+    public int flipMode = 1;
+
 	/**
 	 * Basic constructor.
 	 */
@@ -129,8 +134,8 @@ public class CurlRenderer implements GLSurfaceView.Renderer {
 		if (USE_PERSPECTIVE_PROJECTION) {
 			GLU.gluPerspective(gl, 20f, (float) width / height, .1f, 100f);
 		} else {
-			GLU.gluOrtho2D(gl, mViewRect.left, mViewRect.right,
-					mViewRect.bottom, mViewRect.top);
+			GLU.gluOrtho2D(gl, mViewRect.left, mViewRect.right, mViewRect.bottom, mViewRect.top);
+
 		}
 
 		gl.glMatrixMode(GL10.GL_MODELVIEW);
