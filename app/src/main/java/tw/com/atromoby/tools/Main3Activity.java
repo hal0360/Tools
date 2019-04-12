@@ -29,7 +29,7 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
         mCurlView =  findViewById(R.id.curry);
         mCurlView.setPageProvider(this);
         mCurlView.setCurrentIndex(index);
-
+        mCurlView.setBackgroundColor(Color.GREEN);
         // This is something somewhat experimental. Before uncommenting next
         // line, please see method comments in CurlView.
         // mCurlView.setEnableTouchPressure(true);
@@ -56,7 +56,7 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
         Log.e("bitDim","bitWidth: " + width + " viewWidth: " + mCurlView.getWidth() + " bitHeight: " + height + " viewHeght: " + mCurlView.getHeight());
 
         Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        b.eraseColor(0xFF00FFFF);
+        b.eraseColor(Color.TRANSPARENT);
         Canvas c = new Canvas(b);
         Drawable d = getResources().getDrawable(mBitmapIds[index]);
 
@@ -75,6 +75,7 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
                 Bitmap back = loadBitmap(width, height, 1);
                 page.setTexture(front, CurlPage.SIDE_FRONT);
                 page.setTexture(back, CurlPage.SIDE_BACK);
+               // page.setColor(Color.argb(255, 255, 255, 255), CurlPage.SIDE_FRONT);
                 break;
             }
             // Second case is image on back side, solid colored front.

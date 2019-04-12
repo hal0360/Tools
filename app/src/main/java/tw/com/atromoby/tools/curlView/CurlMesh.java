@@ -602,6 +602,7 @@ public class CurlMesh {
 	 */
 	public synchronized void onDrawFrame(GL10 gl) {
 		// First allocate texture if there is not one yet.
+		//gl.glTexEnvf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_ENV_MODE, GL10.GL_REPLACE);
 		if (DRAW_TEXTURE && mTextureIds == null) {
 			// Generate texture.
 			mTextureIds = new int[2];
@@ -620,6 +621,7 @@ public class CurlMesh {
 			}
 		}
 
+
 		if (DRAW_TEXTURE && mTexturePage.getTexturesChanged()) {
 			gl.glBindTexture(GL10.GL_TEXTURE_2D, mTextureIds[0]);
 			Bitmap texture = mTexturePage.getTexture(mTextureRectFront,
@@ -633,6 +635,8 @@ public class CurlMesh {
 				texture = mTexturePage.getTexture(mTextureRectBack,
 						CurlPage.SIDE_BACK);
 				GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, texture, 0);
+
+
 				texture.recycle();
 			} else {
 				mTextureRectBack.set(mTextureRectFront);
@@ -751,6 +755,8 @@ public class CurlMesh {
 		}
 
 		gl.glDisableClientState(GL10.GL_VERTEX_ARRAY);
+
+	//	gl.glTexEnvf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_ENV_MODE, GL10.GL_REPLACE);
 	}
 
 	/**

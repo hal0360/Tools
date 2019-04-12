@@ -47,7 +47,7 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
     // Shows two pages side by side.
     public static final int SHOW_TWO_PAGES = 2;
 
-    private boolean mAllowLastPageCurl = true;
+    private boolean mAllowLastPageCurl = false;
 
     private boolean mAnimate = false;
     private long mAnimationDurationTime = 300;
@@ -86,9 +86,6 @@ public class CurlView extends GLSurfaceView implements View.OnTouchListener,
     private SizeChangedObserver mSizeChangedObserver;
 
 
-
-
-
     private boolean badass = false;
 
 
@@ -96,6 +93,10 @@ private int RIGHTMODE = 0;
     private int LEFTMODE = 1;
     private int TOPMODE = 2;
     private int BOTTOMMODE = 3;
+    private int BOTTOMleftMODE = 4;
+    private int BOTTOMrightMODE = 5;
+    private int TOPleftMODE = 6;
+    private int TOPrightMODE = 7;
 
     private int flipMode = 0;
 
@@ -151,6 +152,7 @@ private int RIGHTMODE = 0;
         mPageCurl = new CurlMesh(10);
         mPageLeft.setFlipTexture(true);
         mPageRight.setFlipTexture(false);
+
     }
 
     @Override
@@ -205,7 +207,7 @@ private int RIGHTMODE = 0;
             mPointerPos.mPos.set(mAnimationSource);
             float t = 1f - ((float) (currentTime - mAnimationStartTime) / mAnimationDurationTime);
             t = 1f - (t * t * t * (3 - 2 * t));
-            mPointerPos.mPos.x += (mAnimationTarget.x - mAnimationSource.x) * t;
+            mPointerPos.mPos.x -= (mAnimationTarget.x - mAnimationSource.x) * t;
             mPointerPos.mPos.y += (mAnimationTarget.y - mAnimationSource.y) * t;
 
             updateCurlPos(mPointerPos);
@@ -287,23 +289,41 @@ private int RIGHTMODE = 0;
                 float topAbleArea = (rightRect.top)*2/3;
                 float bottomAbleArea = (rightRect.bottom)*2/3;
 
-                Log.e("pos", "leftAbleArea: " + leftAbleArea + " mPointerPos: " + mPointerPos.mPos.x);
+               // Log.e("rect", rightRect.right+ " " + rightRect.left);
+               // Log.e("pos", mPointerPos.mPos.x+ " ");
 
-
+                flipMode = -1;
                 if(mPointerPos.mPos.x > rightAbleArea){
                     flipMode = RIGHTMODE;
-                    startCurl(CURL_RIGHT);
-                }else if(mPointerPos.mPos.x < leftAbleArea){
+                   // Log.e("pos", "right");
+                    if(mPointerPos.mPos.y > topAbleArea){
+                        flipMode = TOPrightMODE;
+                    }
+                    if(mPointerPos.mPos.y < bottomAbleArea){
+                        flipMode = BOTTOMrightMODE;
+                    }
+                }
+                if(mPointerPos.mPos.x < leftAbleArea){
                     flipMode = LEFTMODE;
-                    startCurl(CURL_RIGHT);
-                }else if(mPointerPos.mPos.y > topAbleArea){
-                    flipMode = TOPMODE;
-                    startCurl(CURL_RIGHT);
-                }else{
-                    flipMode = BOTTOMMODE;
+
+                    if(mPointerPos.mPos.y > topAbleArea){
+                        flipMode = TOPleftMODE;
+                    }
+                    if(mPointerPos.mPos.y < bottomAbleArea){
+                        flipMode = BOTTOMleftMODE;
+                    }
+                }
+                if(flipMode == -1){
+                    if(mPointerPos.mPos.y > topAbleArea){
+                        flipMode = TOPMODE;
+                    }else{
+                        flipMode = BOTTOMMODE;
+                    }
+                }
+                if(flipMode != -1){
                     startCurl(CURL_RIGHT);
                 }
-
+                //
 
                 if (mCurlState == CURL_NONE) {
                     return false;
@@ -327,18 +347,29 @@ private int RIGHTMODE = 0;
                     mAnimationSource.set(mPointerPos.mPos);
                     mAnimationStartTime = System.currentTimeMillis();
 
+                    Log.e("touchUP", "X: " + mPointerPos.mPos.x + "Y: " + mPointerPos.mPos.y);
+
                     // Given the explanation, here we decide whether to simulate
                     // drag to left or right end.
                     if ((mViewMode == SHOW_ONE_PAGE && mPointerPos.mPos.x > (rightRect.left + rightRect.right) / 2) || mViewMode == SHOW_TWO_PAGES && mPointerPos.mPos.x > rightRect.left) {
-                        // On right side target is always right page's right border.
+
                         mAnimationTarget.set(mDragStartPos);
+                        if (mCurlState == CURL_RIGHT || mViewMode == SHOW_TWO_PAGES) {
+                            mAnimationTarget.x = leftRect.left;
+                        } else {
+                            mAnimationTarget.x = rightRect.left;
+                        }
+                        mAnimationTargetEvent = SET_CURL_TO_LEFT;
+
+                        /*mAnimationTarget.set(mDragStartPos);
                         mAnimationTarget.x = mRenderer.getPageRect(CurlRenderer.PAGE_RIGHT).right;
-                        mAnimationTargetEvent = SET_CURL_TO_RIGHT;
+                        mAnimationTargetEvent = SET_CURL_TO_RIGHT;*/
+
+                        Log.e("moveUp","back");
+
                     } else {
+                        Log.e("moveUp","flip");
 
-                        badass = true;
-
-                        // On left side target depends on visible pages.
                         mAnimationTarget.set(mDragStartPos);
                         if (mCurlState == CURL_RIGHT || mViewMode == SHOW_TWO_PAGES) {
                             mAnimationTarget.x = leftRect.left;
@@ -450,8 +481,9 @@ if(badass){
 }else {
     curlDir.x = 0;
 }*/
-
+      //  Log.e("flipMode",flipMode +"");
         if(flipMode == RIGHTMODE ){
+
             curlDir.x = -1;
             curlDir.y = 0;
         }else if(flipMode == LEFTMODE){
@@ -460,9 +492,21 @@ if(badass){
         }else if(flipMode == TOPMODE){
             curlDir.x = 0;
             curlDir.y = -1;
-        }else{
+        }else if(flipMode == BOTTOMMODE){
             curlDir.x = 0;
             curlDir.y = 1;
+        }else if(flipMode == BOTTOMleftMODE){
+            curlDir.x = 0.7f;
+            curlDir.y = 0.7f;
+        }else if(flipMode == BOTTOMrightMODE){
+            curlDir.x = -0.7f;
+            curlDir.y = 0.7f;
+        }else if(flipMode == TOPleftMODE){
+            curlDir.x = 0.7f;
+            curlDir.y = -0.7f;
+        }else{
+            curlDir.x = -0.7f;
+            curlDir.y = -0.7f;
         }
 
         mPageCurl.curl(curlPos, curlDir, radius);
@@ -590,8 +634,7 @@ if(badass){
                 }
                 if (mCurrentIndex < mPageProvider.getPageCount() - 1) {
                     updatePage(mPageRight.getTexturePage(), mCurrentIndex + 1);
-                    mPageRight.setRect(mRenderer
-                            .getPageRect(CurlRenderer.PAGE_RIGHT));
+                    mPageRight.setRect(mRenderer.getPageRect(CurlRenderer.PAGE_RIGHT));
                     mPageRight.setFlipTexture(false);
                     mPageRight.reset();
                     mRenderer.addCurlMesh(mPageRight);
