@@ -29,7 +29,7 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
         mCurlView =  findViewById(R.id.curry);
         mCurlView.setPageProvider(this);
         mCurlView.setCurrentIndex(index);
-        mCurlView.setBackgroundColor(Color.GREEN);
+       // mCurlView.setBackgroundColor(Color.TRANSPARENT);
         // This is something somewhat experimental. Before uncommenting next
         // line, please see method comments in CurlView.
         // mCurlView.setEnableTouchPressure(true);

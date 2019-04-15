@@ -17,6 +17,7 @@
 package tw.com.atromoby.tools.curlView;
 
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.opengl.GLSurfaceView;
@@ -140,8 +141,13 @@ private int RIGHTMODE = 0;
      */
     private void init(Context ctx) {
         mRenderer = new CurlRenderer(this);
+
+        setZOrderOnTop(true);
+        setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        getHolder().setFormat(PixelFormat.RGBA_8888);
         setRenderer(mRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+
         setOnTouchListener(this);
 
         // Even though left and right pages are static we have to allocate room
@@ -158,7 +164,6 @@ private int RIGHTMODE = 0;
     @Override
     public void onDrawFrame() {
         // We are not animating.
-
 
         if (mAnimate == false) {
             return;
@@ -207,8 +212,13 @@ private int RIGHTMODE = 0;
             mPointerPos.mPos.set(mAnimationSource);
             float t = 1f - ((float) (currentTime - mAnimationStartTime) / mAnimationDurationTime);
             t = 1f - (t * t * t * (3 - 2 * t));
-            mPointerPos.mPos.x -= (mAnimationTarget.x - mAnimationSource.x) * t;
-            mPointerPos.mPos.y += (mAnimationTarget.y - mAnimationSource.y) * t;
+
+            if(flipMode == RIGHTMODE || flipMode == BOTTOMrightMODE || flipMode == TOPrightMODE){
+                mPointerPos.mPos.x += (mAnimationTarget.x - mAnimationSource.x) * t;
+            }else{
+                mPointerPos.mPos.x -= (mAnimationTarget.x - mAnimationSource.x) * t;
+            }
+            mPointerPos.mPos.y -= (mAnimationTarget.y - mAnimationSource.y) * t;
 
             updateCurlPos(mPointerPos);
         }
@@ -280,9 +290,7 @@ private int RIGHTMODE = 0;
                     mDragStartPos.y = rightRect.bottom;
                 }
 
-
                 mDragStartPos.x = rightRect.right;
-
 
                 float rightAbleArea = (rightRect.right)*2/3;
                 float leftAbleArea = (rightRect.left)*2/3;
@@ -351,32 +359,50 @@ private int RIGHTMODE = 0;
 
                     // Given the explanation, here we decide whether to simulate
                     // drag to left or right end.
+
+
+                    if(flipMode == RIGHTMODE || flipMode == BOTTOMrightMODE || flipMode == TOPrightMODE){
+
+                    }else{
+
+                    }
+
+
+
+
+
                     if ((mViewMode == SHOW_ONE_PAGE && mPointerPos.mPos.x > (rightRect.left + rightRect.right) / 2) || mViewMode == SHOW_TWO_PAGES && mPointerPos.mPos.x > rightRect.left) {
 
+                        /*
                         mAnimationTarget.set(mDragStartPos);
                         if (mCurlState == CURL_RIGHT || mViewMode == SHOW_TWO_PAGES) {
                             mAnimationTarget.x = leftRect.left;
                         } else {
                             mAnimationTarget.x = rightRect.left;
                         }
-                        mAnimationTargetEvent = SET_CURL_TO_LEFT;
+                        mAnimationTargetEvent = SET_CURL_TO_LEFT;*/
 
-                        /*mAnimationTarget.set(mDragStartPos);
+                        mAnimationTarget.set(mDragStartPos);
                         mAnimationTarget.x = mRenderer.getPageRect(CurlRenderer.PAGE_RIGHT).right;
-                        mAnimationTargetEvent = SET_CURL_TO_RIGHT;*/
-
-                        Log.e("moveUp","back");
+                        mAnimationTargetEvent = SET_CURL_TO_RIGHT;
+                        //Log.e("moveUp","back");
 
                     } else {
                         Log.e("moveUp","flip");
 
+                        /*
                         mAnimationTarget.set(mDragStartPos);
                         if (mCurlState == CURL_RIGHT || mViewMode == SHOW_TWO_PAGES) {
                             mAnimationTarget.x = leftRect.left;
                         } else {
                             mAnimationTarget.x = rightRect.left;
                         }
-                        mAnimationTargetEvent = SET_CURL_TO_LEFT;
+                        mAnimationTargetEvent = SET_CURL_TO_LEFT;*/
+
+                        mAnimationTarget.set(mDragStartPos);
+                        mAnimationTarget.x = mRenderer.getPageRect(CurlRenderer.PAGE_RIGHT).right;
+                        mAnimationTargetEvent = SET_CURL_TO_RIGHT;
+
                     }
 
                     mAnimate = true;
