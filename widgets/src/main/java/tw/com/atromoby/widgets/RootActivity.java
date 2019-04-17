@@ -26,6 +26,10 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         recreate();
     }
 
+    public Locale getLocale(){
+        return locale;
+    }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Context context = MyContextWrap.wrap(newBase, locale);

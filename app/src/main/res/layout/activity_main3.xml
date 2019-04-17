@@ -7,9 +7,8 @@
     android:background="#DEB887"
     tools:context=".Main3Activity">
 
-
-    <tw.com.atromoby.tools.curlView.CurlView
-        android:id="@+id/curry"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/curry_tainer"
         android:layout_width="224dp"
         android:layout_height="303dp"
         android:layout_marginStart="8dp"
@@ -21,8 +20,35 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.110000014">
+
+        <tw.com.atromoby.tools.curlView.CurlView
+            android:id="@+id/curry"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </tw.com.atromoby.tools.curlView.CurlView>
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/reset_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="resetCur"
+        android:text="Reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curry_tainer" />
 
 </android.support.constraint.ConstraintLayout>

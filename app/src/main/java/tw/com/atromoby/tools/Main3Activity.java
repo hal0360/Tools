@@ -4,9 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import tw.com.atromoby.tools.curlView.CurlPage;
 import tw.com.atromoby.tools.curlView.CurlView;
@@ -14,6 +17,7 @@ import tw.com.atromoby.tools.curlView.CurlView;
 public class Main3Activity extends AppCompatActivity implements CurlView.PageProvider{
 
     private CurlView mCurlView;
+    private ConstraintLayout curryCon;
 
     private int[] mBitmapIds = { R.drawable.card_back, R.drawable.card_front};
 
@@ -29,6 +33,10 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
         mCurlView =  findViewById(R.id.curry);
         mCurlView.setPageProvider(this);
         mCurlView.setCurrentIndex(index);
+
+
+        curryCon = findViewById(R.id.curry_tainer);
+
        // mCurlView.setBackgroundColor(Color.TRANSPARENT);
         // This is something somewhat experimental. Before uncommenting next
         // line, please see method comments in CurlView.
@@ -46,6 +54,26 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
         super.onResume();
         mCurlView.onResume();
     }
+
+    public void resetCur(View view){
+        int index = 0;
+        if (getLastNonConfigurationInstance() != null) {
+            index = (Integer) getLastNonConfigurationInstance();
+        }
+        curryCon.setBackgroundResource(0);
+        mCurlView.setPageProvider(this);
+        mCurlView.setCurrentIndex(index);
+    }
+
+    public void flipped(){
+        curryCon.setBackgroundResource(R.drawable.card_front);
+        Toast.makeText(this,"flipped",Toast.LENGTH_SHORT).show();
+    }
+
+    public void notFlipped(){
+        Toast.makeText(this,"not flipped",Toast.LENGTH_SHORT).show();
+    }
+
 
     public int getPageCount() {
         return 1;
