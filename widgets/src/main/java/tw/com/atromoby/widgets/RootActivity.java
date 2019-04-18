@@ -19,7 +19,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
 
     private final SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
-    private static Locale locale = Locale.US;
+    public static Locale locale = Locale.US;
 
     public void switchLocale(Locale loc){
         locale = loc;
