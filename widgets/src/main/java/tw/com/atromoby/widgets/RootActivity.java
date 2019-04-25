@@ -137,21 +137,21 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     public final void toActivity(Class<? extends AppCompatActivity> actClass){
         Intent intent = new Intent(this, actClass);
         startActivity(intent);
-        finish();
+        terminate();
     }
 
     public final void toActivity(Class<? extends AppCompatActivity> actClass, int val){
         Intent intent = new Intent(this, actClass);
         intent.putExtra("AtromoRootActVal", val);
         startActivity(intent);
-        finish();
+        terminate();
     }
 
     public final void toActivity(Class<? extends AppCompatActivity> actClass, String val){
         Intent intent = new Intent(this, actClass);
         intent.putExtra("AtromoRootActVal", val);
         startActivity(intent);
-        finish();
+        terminate();
     }
 
     public final int getPassedInt(){
@@ -197,9 +197,18 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         cmds.get(v.getId()).exec(v);
     }
 
+    public void terminate(){
+        finish();
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        terminate();
     }
 }
