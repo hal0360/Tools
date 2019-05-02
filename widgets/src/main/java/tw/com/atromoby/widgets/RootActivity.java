@@ -3,6 +3,7 @@ package tw.com.atromoby.widgets;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -74,6 +75,11 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     public final void clicked(View v, CmdView cd){
         v.setOnClickListener(this);
         cmds.put(v.getId(),cd);
+    }
+
+    public final boolean isPortrait(){
+        int orientation = getResources().getConfiguration().orientation;
+        return orientation != Configuration.ORIENTATION_LANDSCAPE;
     }
 
     public final void pushActivity(Class<? extends AppCompatActivity> actClass){
