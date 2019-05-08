@@ -43,7 +43,6 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         handler = new Handler();
     }
 
-
     public final void clicked(int id, CmdView cd){
         findViewById(id).setOnClickListener(this);
         cmds.put(id,cd);
@@ -145,7 +144,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         finish();
     }
 
-    public final void toActivity(Class<? extends AppCompatActivity> actClass, int val){
+    public final void toActivity(Class<? extends AppCompatActivity> actClass, int val) {
         Intent intent = new Intent(this, actClass);
         intent.putExtra("AtromoRootActVal", val);
         startActivity(intent);

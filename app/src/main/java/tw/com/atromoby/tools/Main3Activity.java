@@ -74,7 +74,6 @@ public class Main3Activity extends AppCompatActivity implements CurlView.PagePro
         Toast.makeText(this,"not flipped",Toast.LENGTH_SHORT).show();
     }
 
-
     public int getPageCount() {
         return 1;
     }
