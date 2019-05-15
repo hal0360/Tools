@@ -805,6 +805,10 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         mTargetState = STATE_PLAYING;
     }
 
+    public IMediaPlayer getMediaPlayer(){
+        return mMediaPlayer;
+    }
+
     @Override
     public void pause() {
         if (isInPlaybackState()) {
@@ -1013,6 +1017,8 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         }
         return text;
     }
+
+
 
     public IMediaPlayer createPlayer(int playerType) {
         IMediaPlayer mediaPlayer = null;
