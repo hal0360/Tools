@@ -9,6 +9,9 @@ public class CountDown {
     }
 
     public void start(int milsec, final CmdInt cmd){
+        if(countDownTimer != null){
+            countDownTimer.cancel();
+        }
         countDownTimer = new CountDownTimer(milsec, 1000) {
             public void onTick(long millisUntilFinished) {
                 int secRem = (int) (millisUntilFinished/1000);

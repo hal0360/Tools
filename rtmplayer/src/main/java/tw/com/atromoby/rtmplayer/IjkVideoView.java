@@ -157,6 +157,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         initBackground();
         initRenders();
 
+
         mVideoWidth = 0;
         mVideoHeight = 0;
         // REMOVED: getHolder().addCallback(mSHCallback);
@@ -283,15 +284,13 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     // addSubtitleSource REMOVED:
     // REMOVED: mPendingSubtitleTracks
 
-    public void s() {
+    public void stopPlayback() {
         if (mMediaPlayer != null) {
             mMediaPlayer.stop();
             mMediaPlayer.release();
             mMediaPlayer = null;
-
-
-        //    if (mHudViewHolder != null)
-         //       mHudViewHolder.setMediaPlayer(null);
+            //    if (mHudViewHolder != null)
+            //       mHudViewHolder.setMediaPlayer(null);
             mCurrentState = STATE_IDLE;
             mTargetState = STATE_IDLE;
             AudioManager am = (AudioManager) mAppContext.getSystemService(Context.AUDIO_SERVICE);
@@ -587,7 +586,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
             };
 
     private IMediaPlayer.OnSeekCompleteListener mSeekCompleteListener = new IMediaPlayer.OnSeekCompleteListener() {
-
         @Override
         public void onSeekComplete(IMediaPlayer mp) {
             mSeekEndTime = System.currentTimeMillis();
@@ -706,6 +704,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
             // REMOVED: release(true);
             releaseWithoutStop();
         }
+
     };
 
     public void releaseWithoutStop() {
@@ -808,6 +807,11 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     public IMediaPlayer getMediaPlayer(){
         return mMediaPlayer;
     }
+
+    public void setMediaPlayer(IMediaPlayer imp){
+         mMediaPlayer = imp;
+    }
+
 
     @Override
     public void pause() {
@@ -1017,8 +1021,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         }
         return text;
     }
-
-
 
     public IMediaPlayer createPlayer(int playerType) {
         IMediaPlayer mediaPlayer = null;

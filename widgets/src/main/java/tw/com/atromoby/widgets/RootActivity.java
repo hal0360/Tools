@@ -38,12 +38,12 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    protected void onCreate(Bundle saveInstanceState){
+    protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         handler = new Handler();
     }
 
-    public final void clicked(int id, CmdView cd){
+    public final void clicked(int id, CmdView cd) {
         findViewById(id).setOnClickListener(this);
         cmds.put(id,cd);
     }
@@ -58,7 +58,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         return txt.getText().toString();
     }
 
-    public final void delay(int milsec, final Cmd cmd){
+    public final void delay(int milsec, final Cmd cmd) {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -67,7 +67,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         }, milsec);
     }
 
-    public final void cancelDelays(){
+    public final void cancelDelays() {
         handler.removeCallbacksAndMessages(null);
     }
 
@@ -76,7 +76,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         cmds.put(v.getId(),cd);
     }
 
-    public final boolean isPortrait(){
+    public final boolean isPortrait() {
         int orientation = getResources().getConfiguration().orientation;
         return orientation != Configuration.ORIENTATION_LANDSCAPE;
     }
@@ -86,11 +86,10 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
-    public final void pushActivity(Class<? extends AppCompatActivity> actClass, int val){
+    public final void pushActivity(Class<? extends AppCompatActivity> actClass, int val) {
         Intent intent = new Intent(this, actClass);
         intent.putExtra("AtromoRootActVal", val);
         startActivity(intent);
-
     }
 
     public final void pushActivity(Class<? extends AppCompatActivity> actClass, String val){
@@ -98,7 +97,6 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         intent.putExtra("AtromoRootActVal", val);
         startActivity(intent);
     }
-
 
 /*
     public final void pushActivity(Class<? extends AppCompatActivity> actClass, int anime){
@@ -114,7 +112,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         }
     }*/
 
-    public final void treeObserve(final View view, final CmdView cmdView){
+    public final void treeObserve(final View view, final CmdView cmdView) {
         view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
