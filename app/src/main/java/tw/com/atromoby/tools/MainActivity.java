@@ -74,6 +74,7 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));
 
+        /*
         clicked(R.id.enButt, new CmdView() {
             @Override
             public void exec(View v) {
@@ -112,7 +113,7 @@ public class MainActivity extends RootActivity {
 
             }
         });
-
+*/
 
         SpinList spinList = findViewById(R.id.spinner);
         List<String> strings = new ArrayList<>();

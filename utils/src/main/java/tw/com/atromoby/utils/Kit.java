@@ -1,16 +1,14 @@
 package tw.com.atromoby.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class Kit {
@@ -40,7 +38,6 @@ public class Kit {
             }
         });
     }
-
 
     public static int color(String colorStr){
         return Color.parseColor(colorStr);

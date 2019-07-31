@@ -98,6 +98,7 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
         startActivity(intent);
     }
 
+
 /*
     public final void pushActivity(Class<? extends AppCompatActivity> actClass, int anime){
         Intent intent = new Intent(this, actClass);
