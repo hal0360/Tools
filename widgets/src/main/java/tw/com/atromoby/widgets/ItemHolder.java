@@ -1,6 +1,7 @@
 package tw.com.atromoby.widgets;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.TextView;
@@ -30,13 +31,17 @@ public abstract class ItemHolder{
     }
 
 
-
     public final void clicked(View v, CmdView cd){
         myHolder.clicked(v,cd);
     }
 
     public final Context getContex(){
         return myHolder.itemView.getContext();
+    }
+
+    public final boolean isPortrait() {
+        int orientation = myHolder.itemView.getContext().getResources().getConfiguration().orientation;
+        return orientation != Configuration.ORIENTATION_LANDSCAPE;
     }
 
     protected final <T extends View & Checkable> T findViewById(int rid){
