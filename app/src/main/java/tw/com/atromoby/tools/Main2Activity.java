@@ -22,13 +22,15 @@ public class Main2Activity extends RootActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-/*
-        String path = "rtmp://wmvdo.c2h6.cn/ytb01-1/stream1";
+
+        String path = "rtmp://wmvdo.nicejj.cn/live1/stream1";
+
         video = findViewById(R.id.my_player);
 
         video.setVideoPath(path);
         video.start();
 
+        /*
         delay(10000, new Cmd() {
             @Override
             public void exec() {
@@ -36,8 +38,8 @@ public class Main2Activity extends RootActivity {
                 video.setVideoPath("rtmp://wmvdo.c2h6.cn/ytb01-1/stream1");
                 video.start();
             }
-        });
-*/
+        });*/
+
     }
 
     @Override

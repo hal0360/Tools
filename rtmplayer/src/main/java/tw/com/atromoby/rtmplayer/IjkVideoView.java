@@ -26,6 +26,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -57,7 +58,7 @@ import tv.danmaku.ijk.media.player.misc.ITrackInfo;
 import tv.danmaku.ijk.media.player.misc.IjkMediaFormat;
 
 
-public class IjkVideoView extends FrameLayout implements MediaController.MediaPlayerControl {
+public class IjkVideoView extends ConstraintLayout implements MediaController.MediaPlayerControl {
     private String TAG = "IjkVideoView";
     // settable by the client
     private Uri mUri;
@@ -122,7 +123,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     private long mSeekStartTime = 0;
     private long mSeekEndTime = 0;
 
-    private TextView subtitleDisplay;
 
     public IjkVideoView(Context context) {
         super(context);
@@ -139,11 +139,12 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         initVideoView(context);
     }
 
+    /*
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public IjkVideoView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initVideoView(context);
-    }
+    }*/
 
     // REMOVED: onMeasure
     // REMOVED: onInitializeAccessibilityEvent
@@ -169,14 +170,6 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
         mCurrentState = STATE_IDLE;
         mTargetState = STATE_IDLE;
 
-        subtitleDisplay = new TextView(context);
-        subtitleDisplay.setTextSize(24);
-        subtitleDisplay.setGravity(Gravity.CENTER);
-        LayoutParams layoutParams_txt = new LayoutParams(
-                LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT,
-                Gravity.BOTTOM);
-        addView(subtitleDisplay, layoutParams_txt);
     }
 
     public void setRenderView(IRenderView renderView) {
@@ -202,9 +195,9 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
 
         View renderUIView = mRenderView.getView();
         LayoutParams lp = new LayoutParams(
-                LayoutParams.WRAP_CONTENT,
-                LayoutParams.WRAP_CONTENT,
-                Gravity.CENTER);
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.MATCH_PARENT);
+
         renderUIView.setLayoutParams(lp);
         addView(renderUIView);
 
@@ -596,9 +589,7 @@ public class IjkVideoView extends FrameLayout implements MediaController.MediaPl
     private IMediaPlayer.OnTimedTextListener mOnTimedTextListener = new IMediaPlayer.OnTimedTextListener() {
         @Override
         public void onTimedText(IMediaPlayer mp, IjkTimedText text) {
-            if (text != null) {
-                subtitleDisplay.setText(text.getText());
-            }
+
         }
     };
 
