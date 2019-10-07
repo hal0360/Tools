@@ -105,6 +105,12 @@ public class ItemsView extends RecyclerView {
         mobyAdaptor.notifyItemRemoved(index);
     }
 
+    public void clean(){
+        for(ItemHolder holder: mobyAdaptor.items){
+            holder.onRecycle();
+        }
+    }
+
     public void scrollTo(int pos){
         smoothScrollToPosition(pos);
     }
