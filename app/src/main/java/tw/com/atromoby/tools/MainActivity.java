@@ -74,15 +74,15 @@ public class MainActivity extends RootActivity {
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));
 
-        /*
+
         clicked(R.id.enButt, new CmdView() {
             @Override
             public void exec(View v) {
-              //  itemsView.smoothScrollToPosition(14);
-                    alert(itemsView.findScroll() + "");
+                dicky();
             }
         });
 
+/*
         itemsView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
@@ -133,6 +133,10 @@ public class MainActivity extends RootActivity {
         });
 
 
+
+    }
+
+    private void dicky(){
 
     }
 

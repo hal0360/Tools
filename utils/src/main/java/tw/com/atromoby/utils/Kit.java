@@ -39,6 +39,8 @@ public class Kit {
         });
     }
 
+
+
     public static int color(String colorStr){
         return Color.parseColor(colorStr);
     }
