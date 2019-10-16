@@ -2,6 +2,7 @@ package tw.com.atromoby.tools;
 
 import android.app.Dialog;
 
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,10 +19,9 @@ public class StupidPopup extends PopupFragment {
     public void dialogCreated(Dialog dialog) {
         dialog.setContentView(R.layout.car_layout);
 
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
         final TextView muh = dialog.findViewById(R.id.muh_dick);
-
+setGravity(Gravity.TOP | Gravity.START);
+setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
 
         muh.setOnClickListener(new View.OnClickListener() {

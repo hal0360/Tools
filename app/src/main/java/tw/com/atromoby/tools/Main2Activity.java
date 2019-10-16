@@ -1,6 +1,7 @@
 package tw.com.atromoby.tools;
 
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.View;
 
 import tw.com.atromoby.rtmplayer.IjkVideoView;

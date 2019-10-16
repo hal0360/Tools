@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.view.Window;
 
 public abstract class PopupFragment extends DialogFragment {
 
@@ -18,10 +19,15 @@ public abstract class PopupFragment extends DialogFragment {
         strId = getClass().getSimpleName();
     }
 
+
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-         dialog = super.onCreateDialog(savedInstanceState);
+         //dialog = super.onCreateDialog(savedInstanceState);
+
+        dialog = new Dialog(getContext(), R.style.BottomOptionsDialogTheme);
+
+        //setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomOptionsDialogTheme);
          dialogCreated(dialog);
         return dialog;
     }
