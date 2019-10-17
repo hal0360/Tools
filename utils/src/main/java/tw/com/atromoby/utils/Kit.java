@@ -3,6 +3,7 @@ package tw.com.atromoby.utils;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Toast;
@@ -39,7 +40,13 @@ public class Kit {
         });
     }
 
+    public static float pixelToDp(float px, Context context){
+        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
 
+    public static float dpToPixel(float dp, Context context){
+        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
 
     public static int color(String colorStr){
         return Color.parseColor(colorStr);

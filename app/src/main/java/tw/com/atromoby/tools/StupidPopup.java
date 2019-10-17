@@ -1,18 +1,16 @@
 package tw.com.atromoby.tools;
 
 import android.app.Dialog;
-
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
 import tw.com.atromoby.widgets.PopupFragment;
+import tw.com.atromoby.widgets.RootActivity;
 
 
 public class StupidPopup extends PopupFragment {
-
 
 
     @Override
@@ -23,11 +21,14 @@ public class StupidPopup extends PopupFragment {
 setGravity(Gravity.TOP | Gravity.START);
 setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
+        final RootActivity activity = (RootActivity) getContext();
+        assert activity != null;
 
         muh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                muh.setText("sheeddeed");
+
+                activity.toActivity(MainActivity.class);
             }
         });
     }
