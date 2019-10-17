@@ -7,6 +7,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
+import android.widget.Checkable;
 
 public abstract class PopupFragment extends DialogFragment {
 
@@ -41,6 +42,10 @@ public abstract class PopupFragment extends DialogFragment {
     public void setLayout(int width, int height){
         assert dialog.getWindow() != null;
         dialog.getWindow().setLayout(width, height);
+    }
+
+    public <T extends View & Checkable> T findViewById(int id){
+        return dialog.findViewById(id);
     }
 
     public void clicked(int id, final CmdView cd){
