@@ -40,12 +40,8 @@ public class Kit {
         });
     }
 
-    public static float pixelToDp(float px, Context context){
-        return px / ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
-    }
-
-    public static float dpToPixel(float dp, Context context){
-        return dp * ((float) context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    public static int dpToPixel(Context context, float dp){
+        return (int) dp * (context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
     public static int color(String colorStr){
