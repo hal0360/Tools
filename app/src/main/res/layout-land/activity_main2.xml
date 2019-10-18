@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="162dp"
-        android:layout_height="136dp"
+        android:layout_width="122dp"
+        android:layout_height="86dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -21,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.019"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396"
+        app:layout_constraintVertical_bias="0.106"
         app:srcCompat="@drawable/dwarfhamster" />
 
     <Button
@@ -70,6 +70,42 @@
         app:layout_constraintStart_toEndOf="@+id/bb_butt"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.493" />
+
+    <tw.com.atromoby.widgets.RonConstraintLayout
+        android:id="@+id/ronConstraintLayout"
+        android:layout_width="123dp"
+        android:layout_height="142dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        app:border_radius="40dp"
+        app:first_color="#8A2BE2"
+        app:gradient_direction="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:second_color="#7FFFD4"
+        app:stroke_color="#FF7F50"
+        app:stroke_width="2dp">
+
+    </tw.com.atromoby.widgets.RonConstraintLayout>
+
+    <tw.com.atromoby.widgets.RonTextView
+        android:id="@+id/ronTextView"
+        android:layout_width="60dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginBottom="16dp"
+        android:text="nigga maid"
+        app:border_radius="20dp"
+        app:first_color="#DC143C"
+        android:gravity="center"
+        app:gradient_direction="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ronConstraintLayout"
+        app:second_color="#FF7F50"
+        app:stroke_color="#00008B"
+        app:stroke_width="1dp" />
 
 
 </android.support.constraint.ConstraintLayout>

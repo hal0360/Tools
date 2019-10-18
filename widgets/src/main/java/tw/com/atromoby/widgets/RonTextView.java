@@ -1,20 +1,20 @@
 package tw.com.atromoby.widgets;
 
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 
-public class RonConstraintLayout extends ConstraintLayout{
+public class RonTextView extends android.support.v7.widget.AppCompatTextView {
+    public RonTextView(Context context) {
+        super(context);
+    }
 
     private GradientDrawable shape;
 
-    public RonConstraintLayout(Context context) {super(context);}
-
-    public RonConstraintLayout(Context context, AttributeSet attrs) {
+    public RonTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.RonConstraintLayout);
@@ -52,11 +52,6 @@ public class RonConstraintLayout extends ConstraintLayout{
 
     public void setRadius(float dip){
         shape.setCornerRadius( RonConstraintLayout.dpToPixel(getContext(), dip));
-    }
-
-
-    public static int dpToPixel(Context context, float dp){
-        return (int) dp * (context.getResources().getDisplayMetrics().densityDpi / DisplayMetrics.DENSITY_DEFAULT);
     }
 
 }
