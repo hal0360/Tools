@@ -18,10 +18,11 @@
 package tw.com.atromoby.rtmplayer;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.view.View;
 
 import java.lang.ref.WeakReference;
+
+import androidx.annotation.NonNull;
 
 
 public final class MeasureHelper {

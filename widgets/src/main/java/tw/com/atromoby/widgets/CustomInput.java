@@ -1,10 +1,11 @@
 package tw.com.atromoby.widgets;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatEditText;
 import android.text.Editable;
 import android.util.AttributeSet;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatEditText;
 
 
 public class CustomInput extends AppCompatEditText {

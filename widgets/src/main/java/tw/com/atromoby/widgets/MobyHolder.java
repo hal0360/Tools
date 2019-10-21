@@ -1,11 +1,12 @@
 package tw.com.atromoby.widgets;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Checkable;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 class MobyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 

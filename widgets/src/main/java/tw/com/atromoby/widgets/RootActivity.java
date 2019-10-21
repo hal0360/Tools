@@ -7,7 +7,6 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -15,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class RootActivity extends AppCompatActivity implements View.OnClickListener{
 

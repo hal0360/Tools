@@ -2,7 +2,6 @@ package tw.com.atromoby.widgets;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.v7.widget.AppCompatSpinner;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+
+import androidx.appcompat.widget.AppCompatSpinner;
 
 public class SpinList extends AppCompatSpinner {
 

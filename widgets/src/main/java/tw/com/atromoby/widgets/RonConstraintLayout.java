@@ -4,9 +4,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class RonConstraintLayout extends ConstraintLayout{
 

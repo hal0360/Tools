@@ -7,7 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 
-public class RonTextView extends android.support.v7.widget.AppCompatTextView {
+public class RonTextView extends androidx.appcompat.widget.AppCompatTextView {
     public RonTextView(Context context) {
         super(context);
     }

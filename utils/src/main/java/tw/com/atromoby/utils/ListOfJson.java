@@ -1,10 +1,10 @@
 package tw.com.atromoby.utils;
 
-import android.support.annotation.NonNull;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 
 public class ListOfJson<T> implements ParameterizedType

@@ -1,13 +1,7 @@
 package tw.com.atromoby.widgets;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,64 +9,22 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class ItemsView extends RecyclerView {
 
     private ItemsView.MobyAdaptor mobyAdaptor;
 
-    public ItemsView(Context context)
-    {
+    public ItemsView(Context context) {
         super(context);
-        init(context, null);
     }
 
     public ItemsView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
-        init(context, attrs);
-    }
-
-    public ItemsView(Context context, @Nullable AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        assert attrs != null;
-        init(context, attrs);
-    }
-
-    /*
-    public void init(int direction, ArrayList<ItemHolder> itemHolders){
         mobyAdaptor = new ItemsView.MobyAdaptor(new ArrayList<ItemHolder>());
-        setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(context);
-        llm.setOrientation(LinearLayoutManager.HORIZONTAL);
-        setLayoutManager(llm);
-        setAdapter(mobyAdaptor);
-    }*/
-
-    private void init(Context context, AttributeSet attrs){
-
-        mobyAdaptor = new ItemsView.MobyAdaptor(new ArrayList<ItemHolder>());
-        setHasFixedSize(true);
-        LinearLayoutManager llm = new LinearLayoutManager(context);
-
-        TypedArray a = context.getTheme().obtainStyledAttributes(
-                attrs,
-                R.styleable.ItemsView,
-                0, 0);
-        int type = 0;
-
-        try {
-            type = a.getInt(R.styleable.ItemsView_direction, 0);
-        } catch (Exception e) {
-            Log.e("ItemsView", "There was an error loading attributes.");
-        } finally {
-            a.recycle();
-        }
-        if(type == 0)  {
-            llm.setOrientation(LinearLayoutManager.VERTICAL);
-        }else{
-            llm.setOrientation(LinearLayoutManager.HORIZONTAL);
-        }
-
-        setLayoutManager(llm);
         setAdapter(mobyAdaptor);
     }
 

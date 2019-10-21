@@ -7,7 +7,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.util.AttributeSet;
 
-public class RonImageView extends android.support.v7.widget.AppCompatImageView {
+public class RonImageView extends androidx.appcompat.widget.AppCompatImageView {
     public RonImageView(Context context) {
         super(context);
     }

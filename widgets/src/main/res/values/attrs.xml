@@ -14,13 +14,6 @@
     <attr name="second_color" format="color"  />
     <attr name="stroke_color" format="color"  />
 
-    <declare-styleable name="ItemsView">
-        <attr name="direction" format="enum">
-            <enum name="vertical" value="0"/>
-            <enum name="horizontal" value="1"/>
-        </attr>
-    </declare-styleable>
-
     <declare-styleable name="RonConstraintLayout">
         <attr name="gradient_direction" />
         <attr name="border_radius"/>
