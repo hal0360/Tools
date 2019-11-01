@@ -18,6 +18,8 @@ class MobyHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 
 
     void alert(String mess){
+
+
         Toast.makeText(itemView.getContext(), mess, Toast.LENGTH_LONG).show();
     }
 
