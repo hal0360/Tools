@@ -2,8 +2,6 @@ package tw.com.atromoby.widgets;
 
 import android.app.Dialog;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Checkable;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
@@ -14,68 +12,49 @@ public abstract class PopupFragment extends DialogFragment {
 
 
     private String strId;
-    private Dialog dialog;
+    private boolean isAssociated = false;
+    private RootActivity rootActivity;
 
     public PopupFragment(){
         strId = getClass().getSimpleName();
     }
 
+    public void initiate(RootActivity activity) {
+        rootActivity = activity;
+    }
+
+    public RootActivity getRoot() {
+        return rootActivity;
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
          //dialog = super.onCreateDialog(savedInstanceState);
         assert getContext() != null;
-        dialog = new Dialog(getContext(), R.style.BottomOptionsDialogTheme);
+        FragDialog dialog = new FragDialog(getContext(), R.style.BottomOptionsDialogTheme);
 
         //setStyle(DialogFragment.STYLE_NO_TITLE, R.style.BottomOptionsDialogTheme);
          dialogCreated(dialog);
         return dialog;
     }
 
-    public abstract void dialogCreated(Dialog dialog);
+    public abstract void dialogCreated(FragDialog dialog);
 
-    public void setGravity(int gravity){
-        assert dialog.getWindow() != null;
-        dialog.getWindow().setGravity(gravity);
+    public void dismiss() {
+        if (isAssociated) {
+            super.dismiss();
+            isAssociated = false;
+        }
     }
 
-    public void setLayout(int width, int height){
-        assert dialog.getWindow() != null;
-        dialog.getWindow().setLayout(width, height);
-    }
-
-    public <T extends View & Checkable> T findViewById(int id){
-        return dialog.findViewById(id);
-    }
-
-    public void clicked(int id, final CmdView cd){
-        dialog.findViewById(id).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cd.exec(v);
-            }
-        });
-    }
-
-    public void clicked(View v, final CmdView cd){
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cd.exec(v);
-            }
-        });
-    }
-
-    public void show(RootActivity activity) {
-
-        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
-        Fragment prev = activity.getSupportFragmentManager().findFragmentByTag(strId);
+    public void show() {
+        isAssociated = true;
+        FragmentTransaction transaction = rootActivity.getSupportFragmentManager().beginTransaction();
+        Fragment prev = rootActivity.getSupportFragmentManager().findFragmentByTag(strId);
         if (prev != null) transaction.remove(prev);
         transaction.addToBackStack(null);
         super.show(transaction, strId);
-
-
     }
 
 }

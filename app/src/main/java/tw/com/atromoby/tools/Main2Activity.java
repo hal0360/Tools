@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import tw.com.atromoby.rtmplayer.IjkVideoView;
+import tw.com.atromoby.widgets.Cmd;
 import tw.com.atromoby.widgets.CmdView;
 import tw.com.atromoby.widgets.RootActivity;
 
@@ -22,6 +23,7 @@ public class Main2Activity extends RootActivity {
         String path = "rtmp://wmvdo.nicejj.cn/live1/stream1";
 
          popup = new StupidPopup();
+        popup.initiate(this);
 
 
         video = findViewById(R.id.my_player);
@@ -42,20 +44,26 @@ public class Main2Activity extends RootActivity {
         clicked(R.id.bb_butt, new CmdView() {
             @Override
             public void exec(View v) {
-                dicky();
+
+                popup.dismiss();
             }
         });
 
 
     }
 
-    private void dicky(){
-        popup.show(this);
-    }
 
     @Override
     public void onResume() {
         super.onResume();
+        popup.show();
+
+        delay(2000, new Cmd() {
+            @Override
+            public void exec() {
+                popup.dismiss();
+            }
+        });
 
     }
 }
