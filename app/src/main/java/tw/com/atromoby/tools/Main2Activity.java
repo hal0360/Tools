@@ -24,9 +24,9 @@ public class Main2Activity extends RootActivity {
          popup = new StupidPopup();
 
 
-       // video = findViewById(R.id.my_player);
-       // video.setVideoPath(path);
-       // video.start();
+        video = findViewById(R.id.my_player);
+        video.setVideoPath(path);
+        video.start();
 
         /*
         delay(10000, new Cmd() {
