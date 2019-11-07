@@ -1,8 +1,6 @@
 package tw.com.atromoby.widgets;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -16,7 +14,7 @@ public class MyContextWrap extends android.content.ContextWrapper {
         super(base);
     }
 
-    @SuppressWarnings("deprecation")
+
     public static MyContextWrap wrap(Context context, Locale newLocale) {
 
         Resources res = context.getResources();
@@ -31,14 +29,12 @@ public class MyContextWrap extends android.content.ContextWrapper {
 
             context = context.createConfigurationContext(configuration);
 
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        } else {
             configuration.setLocale(newLocale);
             context = context.createConfigurationContext(configuration);
 
-        } else {
-            configuration.locale = newLocale;
-            res.updateConfiguration(configuration, res.getDisplayMetrics());
         }
 
         return new MyContextWrap(context);
-    }}
+    }
+}

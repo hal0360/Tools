@@ -4,15 +4,12 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 import tw.com.atromoby.rtmplayer.IjkVideoView;
-import tw.com.atromoby.widgets.CmdInt;
 import tw.com.atromoby.widgets.CmdView;
 import tw.com.atromoby.widgets.ItemsView;
 import tw.com.atromoby.widgets.RootActivity;
-import tw.com.atromoby.widgets.SpinList;
 
 public class MainActivity extends RootActivity {
 
@@ -62,7 +59,9 @@ public class MainActivity extends RootActivity {
         clicked(R.id.enButt, new CmdView() {
             @Override
             public void exec(View v) {
-                dicky();
+
+                switchLocale(Locale.TAIWAN);
+
             }
         });
 
@@ -99,22 +98,6 @@ public class MainActivity extends RootActivity {
         });
 */
 
-        SpinList spinList = findViewById(R.id.spinner);
-        List<String> strings = new ArrayList<>();
-        strings.add("apple");
-        strings.add("orange");
-        strings.add("pineapple");
-        strings.add("kiwi fruit");
-        spinList.init(strings);
-
-        spinList.setColor("#00FFFF");
-
-        spinList.selected(new CmdInt() {
-            @Override
-            public void exec(int i) {
-                alert("no. " + i);
-            }
-        });
 
 
 
