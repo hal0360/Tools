@@ -23,7 +23,7 @@ public class Main2Activity extends RootActivity {
         String path = "rtmp://wmvdo.nicejj.cn/live1/stream1";
 
          popup = new StupidPopup();
-        popup.initiate(this);
+
 
 
         video = findViewById(R.id.my_player);
@@ -44,8 +44,7 @@ public class Main2Activity extends RootActivity {
         clicked(R.id.bb_butt, new CmdView() {
             @Override
             public void exec(View v) {
-
-                popup.dismiss();
+                showPopup(popup);
             }
         });
 
@@ -56,9 +55,9 @@ public class Main2Activity extends RootActivity {
     @Override
     public void onResume() {
         super.onResume();
-        popup.show();
 
-        delay(2000, new Cmd() {
+
+        delay(5000, new Cmd() {
             @Override
             public void exec() {
                 popup.dismiss();

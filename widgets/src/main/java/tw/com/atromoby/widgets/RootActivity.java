@@ -14,6 +14,8 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public abstract class RootActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -64,6 +66,14 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
                 cmd.exec();
             }
         }, milsec);
+    }
+
+    public final void showPopup(PopupFragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag(fragment.getClassID());
+        if (prev != null) transaction.remove(prev);
+        transaction.addToBackStack(null);
+        fragment.show(transaction, fragment.getClassID());
     }
 
     public final void cancelDelays() {
