@@ -31,4 +31,13 @@
         <attr name="second_color"/>
         <attr name="stroke_color" />
     </declare-styleable>
+
+    <declare-styleable name="RonImageView">
+        <attr name="gradient_direction" />
+        <attr name="border_radius" />
+        <attr name="stroke_width" />
+        <attr name="first_color" />
+        <attr name="second_color" />
+        <attr name="stroke_color" />
+    </declare-styleable>
 </resources>

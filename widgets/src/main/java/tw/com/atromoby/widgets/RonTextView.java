@@ -4,7 +4,6 @@ package tw.com.atromoby.widgets;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 
 public class RonTextView extends androidx.appcompat.widget.AppCompatTextView {
@@ -17,7 +16,7 @@ public class RonTextView extends androidx.appcompat.widget.AppCompatTextView {
     public RonTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        TypedArray a = context.obtainStyledAttributes(attrs,R.styleable.RonConstraintLayout);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RonTextView);
         GradientDrawable.Orientation graDir;
         int direction = a.getInt(R.styleable.RonConstraintLayout_gradient_direction, 0);
         int firstColor = a.getColor(R.styleable.RonConstraintLayout_first_color, 0x00000000);
@@ -37,9 +36,7 @@ public class RonTextView extends androidx.appcompat.widget.AppCompatTextView {
         shape.setCornerRadius( a.getDimensionPixelSize(R.styleable.RonConstraintLayout_border_radius, 0) );
 
         a.recycle();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(shape);
-        }
+        setBackground(shape);
     }
 
     public void setStroke(float width, int color){

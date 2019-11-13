@@ -14,7 +14,6 @@ public class MyContextWrap extends android.content.ContextWrapper {
         super(base);
     }
 
-
     public static MyContextWrap wrap(Context context, Locale newLocale) {
 
         Resources res = context.getResources();

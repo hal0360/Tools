@@ -3,7 +3,6 @@ package tw.com.atromoby.widgets;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 
@@ -38,9 +37,7 @@ public class RonConstraintLayout extends ConstraintLayout{
         shape.setCornerRadius( a.getDimensionPixelSize(R.styleable.RonConstraintLayout_border_radius, 0) );
 
         a.recycle();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            setBackground(shape);
-        }
+        setBackground(shape);
     }
 
     public void setStroke(float width, int color){
