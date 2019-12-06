@@ -1,6 +1,7 @@
 package tw.com.atromoby.widgets;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,12 +30,23 @@ public abstract class PopupFragment extends DialogFragment {
         return dialog;
     }
 
+
     public abstract void dialogCreated(FragDialog dialog);
+
+    public abstract void dialogClosed(FragDialog dialog);
 
     public void dismiss() {
         if (getContext() != null) {
             super.dismiss();
         }
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+
+        FragDialog dialogF = (FragDialog) getDialog();
+        dialogClosed(dialogF);
     }
 
 }

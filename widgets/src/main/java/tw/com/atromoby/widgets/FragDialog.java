@@ -5,8 +5,12 @@ import android.content.Context;
 import android.view.View;
 
 public class FragDialog extends Dialog {
-    public FragDialog(Context context, int rid) {
+
+    private RootActivity activity;
+
+    FragDialog(Context context, int rid) {
         super(context, rid);
+        activity = (RootActivity) context;
     }
 
     public void setGravity(int gravity) {
@@ -17,6 +21,10 @@ public class FragDialog extends Dialog {
     public void setLayout(int width, int height) {
         assert getWindow() != null;
         getWindow().setLayout(width, height);
+    }
+
+    public RootActivity getRootActivity() {
+        return activity;
     }
 
     public void clicked(int id, final CmdView cd) {

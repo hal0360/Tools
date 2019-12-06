@@ -21,8 +21,8 @@ public class StupidPopup extends PopupFragment {
         dialog.setGravity(Gravity.TOP | Gravity.START);
         dialog.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
-        final RootActivity activity = (RootActivity) getContext();
-        assert activity != null;
+        final RootActivity activity = (RootActivity) getActivity();
+
 
         muh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,9 +33,10 @@ public class StupidPopup extends PopupFragment {
         });
     }
 
-
-
-
+    @Override
+    public void dialogClosed(FragDialog dialog) {
+        dialog.getRootActivity().alert("dick");
+    }
 
 
 }
