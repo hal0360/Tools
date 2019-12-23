@@ -4,8 +4,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-
 
 public class ListOfJson<T> implements ParameterizedType
 {
@@ -16,14 +14,14 @@ public class ListOfJson<T> implements ParameterizedType
         this.wrapped = wrapper;
     }
 
-    @NonNull
+
     @Override
     public Type[] getActualTypeArguments()
     {
         return new Type[] { wrapped };
     }
 
-    @NonNull
+
     @Override
     public Type getRawType()
     {

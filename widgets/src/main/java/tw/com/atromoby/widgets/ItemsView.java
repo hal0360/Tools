@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -101,7 +100,7 @@ public class ItemsView extends RecyclerView {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final MobyHolder holder, final int i) {
+        public void onBindViewHolder(final MobyHolder holder, final int i) {
             ItemHolder itemHolder = items.get(i);
             itemHolder.position = holder.getAdapterPosition();
             itemHolder.myHolder = holder;
@@ -113,15 +112,15 @@ public class ItemsView extends RecyclerView {
             return items.get(position).itemHolderrid;
         }
 
-        @NonNull
+
         @Override
-        public MobyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        public MobyHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(i, viewGroup, false);
             return new MobyHolder(view);
         }
 
         @Override
-        public void onViewRecycled (@NonNull MobyHolder holder) {
+        public void onViewRecycled(MobyHolder holder) {
             int hPos = holder.getAdapterPosition();
             if(hPos >= 0){
                 ItemHolder iHold = items.get(holder.getAdapterPosition());

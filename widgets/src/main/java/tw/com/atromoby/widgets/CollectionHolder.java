@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.Checkable;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CollectionHolder extends RecyclerView.ViewHolder {
 
-    CollectionHolder(@NonNull View itemView) {
+    CollectionHolder(View itemView) {
         super(itemView);
     }
 

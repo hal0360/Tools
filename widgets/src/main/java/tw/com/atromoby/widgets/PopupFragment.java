@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 public abstract class PopupFragment extends DialogFragment {
@@ -20,7 +19,6 @@ public abstract class PopupFragment extends DialogFragment {
         return strId;
     }
 
-    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         assert getContext() != null;

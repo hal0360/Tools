@@ -22,7 +22,6 @@ import android.view.View;
 
 import java.lang.ref.WeakReference;
 
-import androidx.annotation.NonNull;
 
 
 public final class MeasureHelper {
@@ -217,7 +216,6 @@ public final class MeasureHelper {
         mCurrentAspectRatio = aspectRatio;
     }
 
-    @NonNull
     public static String getAspectRatioText(Context context, int aspectRatio) {
         String text;
         switch (aspectRatio) {

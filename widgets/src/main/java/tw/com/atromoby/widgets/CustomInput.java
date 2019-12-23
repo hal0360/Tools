@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.Editable;
 import android.util.AttributeSet;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 
 
@@ -20,7 +19,7 @@ public class CustomInput extends AppCompatEditText {
         super(context, attrs);
     }
 
-    public CustomInput(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public CustomInput(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 

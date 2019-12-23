@@ -34,8 +34,6 @@ import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.ISurfaceTextureHolder;
 
@@ -126,8 +124,8 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
         private SurfaceRenderView mSurfaceView;
         private SurfaceHolder mSurfaceHolder;
 
-        public InternalSurfaceHolder(@NonNull SurfaceRenderView surfaceView,
-                                     @Nullable SurfaceHolder surfaceHolder) {
+        public InternalSurfaceHolder(SurfaceRenderView surfaceView,
+                                     SurfaceHolder surfaceHolder) {
             mSurfaceView = surfaceView;
             mSurfaceHolder = surfaceHolder;
         }
@@ -143,25 +141,25 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
             }
         }
 
-        @NonNull
+
         @Override
         public IRenderView getRenderView() {
             return mSurfaceView;
         }
 
-        @Nullable
+
         @Override
         public SurfaceHolder getSurfaceHolder() {
             return mSurfaceHolder;
         }
 
-        @Nullable
+
         @Override
         public SurfaceTexture getSurfaceTexture() {
             return null;
         }
 
-        @Nullable
+
         @Override
         public Surface openSurface() {
             if (mSurfaceHolder == null)
@@ -196,11 +194,11 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
         private WeakReference<SurfaceRenderView> mWeakSurfaceView;
         private Map<IRenderCallback, Object> mRenderCallbackMap = new ConcurrentHashMap<IRenderCallback, Object>();
 
-        public SurfaceCallback(@NonNull SurfaceRenderView surfaceView) {
+        public SurfaceCallback(SurfaceRenderView surfaceView) {
             mWeakSurfaceView = new WeakReference<SurfaceRenderView>(surfaceView);
         }
 
-        public void addRenderCallback(@NonNull IRenderCallback callback) {
+        public void addRenderCallback(IRenderCallback callback) {
             mRenderCallbackMap.put(callback, callback);
 
             ISurfaceHolder surfaceHolder = null;
@@ -217,7 +215,7 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView {
             }
         }
 
-        public void removeRenderCallback(@NonNull IRenderCallback callback) {
+        public void removeRenderCallback(IRenderCallback callback) {
             mRenderCallbackMap.remove(callback);
         }
 

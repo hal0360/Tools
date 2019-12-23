@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CollectionsView extends RecyclerView {
@@ -55,7 +53,7 @@ public class CollectionsView extends RecyclerView {
         mobyAdaptor.collections.remove(index);
         mobyAdaptor.notifyItemRemoved(index);
     }
-
+/*
     public void scrollTo(int pos) {
         smoothScrollToPosition(pos);
     }
@@ -63,7 +61,7 @@ public class CollectionsView extends RecyclerView {
 
     public int findScroll() {
         return ((LinearLayoutManager) getLayoutManager()).findFirstVisibleItemPosition();
-    }
+    }*/
 
     public void delete() {
         mobyAdaptor.collections.clear();
@@ -99,7 +97,7 @@ public class CollectionsView extends RecyclerView {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull CollectionHolder holder, int i) {
+        public void onBindViewHolder(CollectionHolder holder, int i) {
             Collection collection = collections.get(i);
             collection.onBind(holder);
         }
@@ -109,15 +107,15 @@ public class CollectionsView extends RecyclerView {
             return collections.get(position).itemHolderrid;
         }
 
-        @NonNull
+
         @Override
-        public CollectionHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        public CollectionHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(i, viewGroup, false);
             return new CollectionHolder(view);
         }
 
         @Override
-        public void onViewRecycled(@NonNull CollectionHolder holder) {
+        public void onViewRecycled(CollectionHolder holder) {
             int hPos = holder.getAdapterPosition();
             if (hPos >= 0) {
                 Collection collection = collections.get(hPos);

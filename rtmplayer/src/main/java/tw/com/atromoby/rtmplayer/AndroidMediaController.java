@@ -24,8 +24,6 @@ import android.widget.MediaController;
 
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 
 public class AndroidMediaController extends MediaController implements IMediaController {
@@ -49,7 +47,7 @@ public class AndroidMediaController extends MediaController implements IMediaCon
     private void initView(Context context) {
     }
 
-    public void setSupportActionBar(@Nullable ActionBar actionBar) {
+    public void setSupportActionBar(ActionBar actionBar) {
         mActionBar = actionBar;
         if (isShowing()) {
             actionBar.show();
@@ -80,7 +78,7 @@ public class AndroidMediaController extends MediaController implements IMediaCon
     //----------
     private ArrayList<View> mShowOnceArray = new ArrayList<View>();
 
-    public void showOnce(@NonNull View view) {
+    public void showOnce(View view) {
         mShowOnceArray.add(view);
         view.setVisibility(View.VISIBLE);
         show();

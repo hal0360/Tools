@@ -5,14 +5,13 @@ import android.view.View;
 import android.widget.Checkable;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 class MobyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     private SparseArray<CmdView> cmds = new SparseArray<>();
 
-    MobyHolder(@NonNull View itemView) {
+    MobyHolder(View itemView) {
         super(itemView);
     }
 

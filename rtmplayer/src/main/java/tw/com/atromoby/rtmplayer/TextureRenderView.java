@@ -17,8 +17,6 @@ import java.lang.ref.WeakReference;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 import tv.danmaku.ijk.media.player.ISurfaceTextureHolder;
 import tv.danmaku.ijk.media.player.ISurfaceTextureHost;
@@ -122,9 +120,9 @@ public class TextureRenderView extends TextureView implements IRenderView {
         private SurfaceTexture mSurfaceTexture;
         private ISurfaceTextureHost mSurfaceTextureHost;
 
-        public InternalSurfaceHolder(@NonNull TextureRenderView textureView,
-                                     @Nullable SurfaceTexture surfaceTexture,
-                                     @NonNull ISurfaceTextureHost surfaceTextureHost) {
+        public InternalSurfaceHolder(TextureRenderView textureView,
+                                     SurfaceTexture surfaceTexture,
+                                     ISurfaceTextureHost surfaceTextureHost) {
             mTextureView = textureView;
             mSurfaceTexture = surfaceTexture;
             mSurfaceTextureHost = surfaceTextureHost;
@@ -152,25 +150,25 @@ public class TextureRenderView extends TextureView implements IRenderView {
             }
         }
 
-        @NonNull
+
         @Override
         public IRenderView getRenderView() {
             return mTextureView;
         }
 
-        @Nullable
+
         @Override
         public SurfaceHolder getSurfaceHolder() {
             return null;
         }
 
-        @Nullable
+
         @Override
         public SurfaceTexture getSurfaceTexture() {
             return mSurfaceTexture;
         }
 
-        @Nullable
+
         @Override
         public Surface openSurface() {
             if (mSurfaceTexture == null)
@@ -208,7 +206,7 @@ public class TextureRenderView extends TextureView implements IRenderView {
         private WeakReference<TextureRenderView> mWeakRenderView;
         private Map<IRenderCallback, Object> mRenderCallbackMap = new ConcurrentHashMap<IRenderCallback, Object>();
 
-        public SurfaceCallback(@NonNull TextureRenderView renderView) {
+        public SurfaceCallback(TextureRenderView renderView) {
             mWeakRenderView = new WeakReference<TextureRenderView>(renderView);
         }
 
@@ -216,7 +214,7 @@ public class TextureRenderView extends TextureView implements IRenderView {
             mOwnSurfaceTexture = ownSurfaceTexture;
         }
 
-        public void addRenderCallback(@NonNull IRenderCallback callback) {
+        public void addRenderCallback(IRenderCallback callback) {
             mRenderCallbackMap.put(callback, callback);
 
             ISurfaceHolder surfaceHolder = null;
@@ -233,7 +231,7 @@ public class TextureRenderView extends TextureView implements IRenderView {
             }
         }
 
-        public void removeRenderCallback(@NonNull IRenderCallback callback) {
+        public void removeRenderCallback(IRenderCallback callback) {
             mRenderCallbackMap.remove(callback);
         }
 
