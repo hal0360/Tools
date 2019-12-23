@@ -7,7 +7,7 @@
     android:background="#A52A2A"
     tools:context=".MainActivity">
 
-    <tw.com.atromoby.widgets.ItemsView
+    <tw.com.atromoby.widgets.CollectionsView
         android:id="@+id/iiView"
         android:layout_width="322dp"
         android:layout_height="319dp"
@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

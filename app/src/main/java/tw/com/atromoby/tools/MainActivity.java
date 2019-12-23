@@ -8,7 +8,7 @@ import java.util.Locale;
 
 import tw.com.atromoby.rtmplayer.IjkVideoView;
 import tw.com.atromoby.widgets.CmdView;
-import tw.com.atromoby.widgets.ItemsView;
+import tw.com.atromoby.widgets.CollectionsView;
 import tw.com.atromoby.widgets.RootActivity;
 
 public class MainActivity extends RootActivity {
@@ -22,7 +22,7 @@ public class MainActivity extends RootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ItemsView itemsView = findViewById(R.id.iiView);
+        CollectionsView itemsView = findViewById(R.id.iiView);
 
         itemsView.add(new RecordHolder("sd"));
         itemsView.add(new RecordHolder("sd"));

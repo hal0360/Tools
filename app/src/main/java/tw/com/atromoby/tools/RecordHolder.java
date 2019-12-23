@@ -1,13 +1,13 @@
 package tw.com.atromoby.tools;
 
-import android.util.Log;
 import android.widget.TextView;
 
 import tw.com.atromoby.utils.CmdInt;
 import tw.com.atromoby.utils.CountDown;
-import tw.com.atromoby.widgets.ItemHolder;
+import tw.com.atromoby.widgets.Collection;
+import tw.com.atromoby.widgets.CollectionHolder;
 
-public class RecordHolder extends ItemHolder {
+public class RecordHolder extends Collection {
 
     public String name;
     private int inc = 0;
@@ -19,11 +19,12 @@ public class RecordHolder extends ItemHolder {
         countDownTimer = new CountDown();
     }
 
+
     @Override
-    public void onBind() {
+    public void onBind(CollectionHolder holder) {
 
         countDownTimer = new CountDown();
-        final TextView textView = findViewById(R.id.nameTxt);
+        final TextView textView = holder.findViewById(R.id.nameTxt);
         countDownTimer.start(7000,new CmdInt(){
             @Override
             public void exec(int i) {
@@ -32,18 +33,10 @@ public class RecordHolder extends ItemHolder {
 
         });
 
-
-
-
-      //  TextView textView = findViewById(R.id.nameTxt);
-        //   textView.setText(name);
-
     }
 
     @Override
-    public void onRecycle() {
-        Log.e("diff", "called: " + inc);
+    public void onRecycle(CollectionHolder holder) {
+
     }
-
-
 }
