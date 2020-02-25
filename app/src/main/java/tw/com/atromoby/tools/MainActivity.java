@@ -4,11 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 
-import java.util.Locale;
-
 import tw.com.atromoby.rtmplayer.IjkVideoView;
 import tw.com.atromoby.widgets.CmdView;
-import tw.com.atromoby.widgets.CollectionsView;
 import tw.com.atromoby.widgets.RootActivity;
 
 public class MainActivity extends RootActivity {
@@ -22,45 +19,13 @@ public class MainActivity extends RootActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CollectionsView itemsView = findViewById(R.id.iiView);
-
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        RecordHolder recordHolder = new RecordHolder("sd");
-        itemsView.add(recordHolder);
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
-        itemsView.add(new RecordHolder("sd"));
 
 
         clicked(R.id.enButt, new CmdView() {
             @Override
             public void exec(View v) {
 
-                switchLocale(Locale.TAIWAN);
+                //switchLocale(Locale.TAIWAN);
 
             }
         });

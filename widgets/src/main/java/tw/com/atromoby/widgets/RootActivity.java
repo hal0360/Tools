@@ -1,7 +1,6 @@
 package tw.com.atromoby.widgets;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -11,8 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Locale;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,32 +18,8 @@ public abstract class RootActivity extends AppCompatActivity implements View.OnC
 
     private final SparseArray<CmdView> cmds = new SparseArray<>();
     private Handler handler;
-    public static Locale locale = Locale.US;
 
-    public void switchLocale(Locale loc){
-        locale = loc;
-        recreate();
-    }
 
-    public Locale getLocale(){
-        return locale;
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        Context context = MyContextWrap.wrap(newBase, locale);
-        super.attachBaseContext(context);
-    }
-
-    @Override
-    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
-        if (overrideConfiguration != null) {
-            int uiMode = overrideConfiguration.uiMode;
-            overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
-            overrideConfiguration.uiMode = uiMode;
-        }
-        super.applyOverrideConfiguration(overrideConfiguration);
-    }
 
     @Override
     protected void onCreate(Bundle saveInstanceState) {
