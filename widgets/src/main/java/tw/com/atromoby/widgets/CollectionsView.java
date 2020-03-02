@@ -75,6 +75,12 @@ public class CollectionsView extends RecyclerView {
         scrollToPosition(0);
     }
 
+
+    public List<Collection> getCollection() {
+        return mobyAdaptor.collections;
+    }
+
+
     public List<Collection> getCollections() {
         return mobyAdaptor.collections;
     }
