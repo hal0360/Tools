@@ -76,11 +76,6 @@ public class CollectionsView extends RecyclerView {
     }
 
 
-    public List<Collection> getCollection() {
-        return mobyAdaptor.collections;
-    }
-
-
     public List<Collection> getCollections() {
         return mobyAdaptor.collections;
     }
